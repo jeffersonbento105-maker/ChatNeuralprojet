@@ -47,24 +47,25 @@ export default function MessageInput({ onSendMessage, disabled, language }: Mess
     : "Type your message... (Press Enter to send, Shift+Enter for new line)";
 
   return (
-    <div className="input-area">
+    <div className="flex items-end gap-3 p-4 bg-white rounded-2xl border border-gray-200 shadow-sm">
       <Textarea
         ref={textareaRef}
-        className="message-input"
+        className="flex-1 min-h-[44px] max-h-[120px] border-0 focus:ring-0 focus:border-0 resize-none bg-transparent text-[15px] leading-relaxed placeholder:text-gray-500"
         placeholder={placeholder}
         value={message}
         onChange={handleInput}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         data-testid="input-message"
+        rows={1}
       />
       <Button
-        className="send-button"
         onClick={handleSend}
         disabled={disabled || !message.trim()}
+        className="w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 p-0"
         data-testid="button-send"
       >
-        <Send size={20} />
+        <Send size={18} />
       </Button>
     </div>
   );
