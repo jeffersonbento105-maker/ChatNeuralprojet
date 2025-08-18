@@ -40,12 +40,29 @@ export default function EmailSidebar({ isOpen, onClose, language }: EmailSidebar
     if (!emailGenerator.generatedEmail) return;
     
     try {
-      await navigator.clipboard.writeText(emailGenerator.generatedEmail);
+      // Try modern clipboard API first
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(emailGenerator.generatedEmail);
+      } else {
+        // Fallback for iframe/insecure contexts
+        const textArea = document.createElement('textarea');
+        textArea.value = emailGenerator.generatedEmail;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      
       toast({
         title: language === 'pt' ? 'Sucesso' : 'Success',
         description: language === 'pt' ? 'E-mail copiado!' : 'Email copied!'
       });
     } catch (error) {
+      console.error('Copy failed:', error);
       toast({
         variant: "destructive",
         title: language === 'pt' ? 'Erro' : 'Error',

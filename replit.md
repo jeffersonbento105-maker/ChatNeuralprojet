@@ -1,6 +1,6 @@
 # Overview
 
-ChatNeural is a modern AI assistant platform built with Node.js, Express, React, and TypeScript. The application provides users with two distinct AI assistants - Clark (analytical) and Ragnaria (creative) - each with unique personalities and communication styles. The platform features a modern chat interface with bubble-style conversations, automatic language detection (Portuguese/English), and a dedicated email generation tool with multiple tone options. The application uses a glassmorphism design aesthetic and is optimized for deployment on Replit.
+ChatNeural is a modern AI assistant platform built with Node.js, Express, React, and TypeScript. The application provides users with two distinct AI assistants - Clark (analytical) and Ragnaria (creative) - each with unique personalities and communication styles. The platform features a modern chat interface with bubble-style conversations, automatic language detection (Portuguese/English), and a dedicated email generation tool with multiple tone options. The application uses a clean, modern design with centralized layout and is fully optimized for external iframe embedding with comprehensive CORS support.
 
 # User Preferences
 
@@ -66,3 +66,5 @@ Dedicated email composition tool with:
 ## Deployment Platform
 - **Replit**: Primary deployment platform with automatic environment detection
 - **Environment Variables**: Uses Replit Secrets for secure API key storage
+- **External Access**: Full CORS support for iframe embedding and external domain access
+- **Cross-Origin Security**: Configured to work seamlessly in MailerLite and other external iframes

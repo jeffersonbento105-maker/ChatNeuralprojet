@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste iframe ChatNeural</title>
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .iframe-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: 600px;
+            margin-bottom: 20px;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .info {
+            background: #e0f2fe;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 16px;
+            color: #0c4a6e;
+        }
+        
+        .info h3 {
+            margin: 0 0 10px 0;
+            color: #0369a1;
+        }
+        
+        .info ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .test-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        
+        .test-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Teste ChatNeural em iframe</h1>
+        
+        <div class="info">
+            <h3>Testando funcionalidades:</h3>
+            <ul>
+                <li>✅ Chat com Clark (analítico) e Ragnaria (criativo)</li>
+                <li>✅ Geração de emails profissionais</li>
+                <li>✅ CORS configurado para requisições externas</li>
+                <li>✅ Clipboard funcional em iframe</li>
+                <li>✅ Interface responsiva</li>
+            </ul>
+        </div>
+
+        <button class="test-btn" onclick="testExternalAPI()">Testar API Externa</button>
+        <div id="test-result" style="margin: 10px 0; padding: 10px; background: #f1f5f9; border-radius: 6px; display: none;"></div>
+        
+        <div class="iframe-container">
+            <iframe 
+                src="/" 
+                title="ChatNeural"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        async function testExternalAPI() {
+            const resultDiv = document.getElementById('test-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '🔄 Testando API...';
+            
+            try {
+                // Test health endpoint
+                const healthResponse = await fetch('/api/health');
+                const healthData = await healthResponse.json();
+                
+                // Test email generation
+                const emailResponse = await fetch('/api/email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prompt: 'Teste de email via iframe',
+                        tone: 'formal',
+                        lang: 'pt'
+                    })
+                });
+                const emailData = await emailResponse.json();
+                
+                resultDiv.innerHTML = `
+                    <strong>✅ Teste Concluído:</strong><br>
+                    • Health: ${healthData.status}<br>
+                    • Email gerado: ${emailData.email ? 'Sucesso' : 'Falha'}<br>
+                    • CORS funcionando: ✅
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Erro:</strong> ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

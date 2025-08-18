@@ -12,11 +12,20 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
+  // Ensure absolute URL for iframe/external access
+  const baseUrl = window.location.origin;
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+
+  const res = await fetch(fullUrl, {
     method,
-    headers: data ? { "Content-Type": "application/json" } : {},
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      ...(data ? {} : {})
+    },
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
+    mode: "cors", // Enable CORS
   });
 
   await throwIfResNotOk(res);

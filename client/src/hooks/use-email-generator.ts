@@ -19,6 +19,9 @@ export function useEmailGenerator(): EmailGeneratorHook {
     language: 'pt' | 'en'
   ) => {
     setIsGenerating(true);
+    
+    // Clear previous result immediately when starting generation
+    setGeneratedEmail(null);
 
     try {
       const email = await generateEmail({ prompt, tone, lang: language });
@@ -31,6 +34,8 @@ export function useEmailGenerator(): EmailGeneratorHook {
 
     } catch (error) {
       console.error('Error generating email:', error);
+      setGeneratedEmail(null); // Ensure clean state on error
+      
       toast({
         variant: "destructive",
         title: language === 'pt' ? 'Erro' : 'Error',
