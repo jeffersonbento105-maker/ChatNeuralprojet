@@ -1,0 +1,123 @@
+# PROMPT PARA USAR NO REPLIT — ChatNeural (Node.js + Express)
+
+> **Cole exatamente o bloco abaixo na IA do Replit** para gerar o projeto completo, já estruturado e pronto para rodar.
+
+```
+Crie um projeto completo chamado **ChatNeural** usando **Node.js + Express + HTML/CSS/JS** (sem TypeScript, sem build step). Gere **todo o código** organizado e pronto para rodar no Replit.
+
+OBJETIVO
+Um app web de chatbot moderno com alternador entre dois assistentes (Clark e Ragnaria), interface em bolhas de conversa e um painel lateral para gerar e-mails profissionais com IA.
+
+PADRÕES E DEPLOY (Replit 2025)
+- Node 18+ (usar fetch nativo do Node 18; não usar axios por padrão).
+- Porta: `process.env.PORT || 3000`.
+- Script no package.json: `"start": "node server.js"`.
+- Projeto deve iniciar clicando em **Run** no Replit, sem ajustes manuais.
+- Instruir no README a criar o Secret **OPENAI_API_KEY** no Replit.
+
+ESTRUTURA DE PASTAS
+- `server.js` — servidor Express, rotas e integração OpenAI.
+- `public/` — assets estáticos
+  - `index.html` — UI principal (chat + painel de e-mail + seletor de assistente)
+  - `app.js` — lógica do chat (histórico curto, chamadas à API, estados)
+  - `styles.css` — tema, bolhas, responsividade e animações
+- `views/` — **(opcional)** vazio, apenas para manter padrão
+- `package.json` — dependências e scripts
+- `README.md` — instruções rápidas de uso no Replit
+
+NOME & BRANDING
+- Título, cabeçalho e metadados do app devem usar o nome **ChatNeural**.
+- Favicon simples (pode gerar via emoji 💬 ou ícone SVG minimalista).
+
+ASSISTENTES (alternador)
+- Um **dropdown** visível no topo para escolher entre **Clark** e **Ragnaria**.
+- O assistente selecionado define o **system prompt** enviado à API:
+  - **Clark (PT-BR)**: "Você é o Clark, analítico, objetivo, educativo; responda com clareza e passo-a-passo quando útil; use listas numeradas; máximo 1 emoji por resposta."
+  - **Ragnaria (PT-BR)**: "Você é a Ragnaria, criativa e acolhedora; traga ideias e exemplos; use linguagem leve; até 2–3 emojis quando fizer sentido."
+- Versões equivalentes em **EN** devem ser embutidas e selecionadas automaticamente quando o usuário estiver em inglês.
+
+AUTO-DETECÇÃO DE IDIOMA
+- Detectar automaticamente PT-BR ou EN a partir da entrada do usuário e responder no mesmo idioma.
+- Mensagens de UI (placeholders, botões) devem acompanhar o idioma detectado quando possível (ex.: "Enviar/Send", "Pensando…/Thinking…").
+
+INTERFACE EM BOLHAS (UX moderno)
+- Layout estilo apps de chat: bolhas do **usuário à direita** e da **IA à esquerda**.
+- Cabeçalho com nome **ChatNeural**, seletor de assistente e indicador de status (online / digitando…).
+- Barra de entrada: textarea que envia com **Enter** e botão **Enviar**. Suporte a Shift+Enter para nova linha.
+- Mostrar estado **“digitando…”** da IA com animação de três pontos.
+- Ícones pequenos para status: ✔️ (sucesso), ⚠️ (aviso), ❌ (erro).
+- **Toasts** de sucesso/erro simples (sem libs pesadas; use HTML/CSS/JS puro).
+- Acessibilidade: labels, `aria-live="polite"` para o status e foco gerenciável no input.
+
+DESIGN VISUAL (bonito como referência anterior)
+- Usar **Bootstrap 5 via CDN** para grid e resets.
+- Criar um **tema autoral** em `styles.css` com:
+  - **Glassmorphism** sutil (fundo blur + transparência leve) no container principal.
+  - **Gradiente suave** no topo (ex.: roxo→azul) e **cores pastéis** nas bolhas.
+  - **Cantos 2xl** e **sombras suaves** em cards e botões.
+  - **Microanimações** em hover/focus e na aparição das mensagens (keyframes CSS, sem bibliotecas).
+  - Responsivo: ótimo em mobile (320px+) e desktop amplo.
+
+GERADOR DE E-MAILS (painel lateral)
+- Um botão destacado **“Gerar E-mail / Generate Email”** que abre um **painel/aside** acessível.
+- Conteúdo do painel: título, `textarea`, seletor de tom (Formal/Neutro/Amigável) e botão **Gerar**.
+- Resultado com **botões de Copy e Regenerate**.
+- Usa idioma detectado do prompt do usuário, mas permite escolher manualmente.
+
+HISTÓRICO CURTO (cliente)
+- Manter no **frontend** os últimos **5 turnos** `{role, content}` e enviar junto a cada chamada.
+- Não usar banco; apenas memória do cliente.
+
+ENDPOINTS EXPRESS
+- `POST /api/chat` recebe `{ assistant: "Clark"|"Ragnaria", message: string, history?: [{role, content}] }` e retorna `{ reply }`.
+- `POST /api/email` recebe `{ prompt: string, tone?: "formal"|"neutral"|"friendly", lang?: "pt"|"en" }` e retorna `{ email }`.
+- `GET /api/health` retorna `{ status: "ok", app: "ChatNeural" }`.
+- Tratar erros comuns (sem chave, rate limit) com mensagens amigáveis no mesmo idioma detectado.
+
+OPENAI (chamadas)
+- Ler a chave de `process.env.OPENAI_API_KEY` (não hardcode).
+- Usar **`fetch` nativo do Node 18** com a API **Responses** compatível (modelo: `gpt-4o-mini`).
+- Montar o payload com `messages: [ {role: "system", content: systemPrompt}, ...history, {role: "user", content: message} ]`.
+- Para o gerador de e-mails, usar um **system prompt** específico para e-mails profissionais (PT/EN) e um **user prompt** com as instruções do usuário + tom desejado.
+
+ARQUIVOS QUE VOCÊ DEVE ENTREGAR
+1) `server.js` — Express + rotas acima + CORS simples + serve `public/`
+2) `public/index.html` — UI completa (chat + painel lateral de e-mail + seletor Clark/Ragnaria)
+3) `public/app.js` — lógica do chat, histórico curto, chamadas à API, estado "digitando…", toasts e copy
+4) `public/styles.css` — tema bonito com glassmorphism, gradientes, cantos 2xl, sombras e animações
+5) `package.json` — com `"start": "node server.js"`
+6) `README.md` — passos rápidos Replit (adicionar `OPENAI_API_KEY`, clicar Run)
+
+EXTRAS DE QUALIDADE
+- Placeholder inicial com dica (PT/EN): exemplo de pergunta.
+- Spinner de carregamento com texto **“Pensando… / Thinking…”**.
+- Prevenir envios múltiplos enquanto processa.
+- Limpar input após envio e rolar a área de chat para a última mensagem.
+
+IMPORTANTE
+- **Entregue o código completo** e funcional (sem trechos omitidos).
+- Sem TypeScript, Webpack, Vite ou Babel. Somente **Node + Express + HTML/CSS/JS puros**.
+- Sem dependências pesadas de UI; apenas Bootstrap 5 via CDN e CSS próprio.
+```
+
+---
+
+## PROMPT LITE (mais simples, ainda bonito e com menos chances de erro)
+
+> Use este se quiser algo **mais enxuto**, mantendo ChatNeural, alternador Clark/Ragnaria e gerador de e-mails, mas com menos efeitos visuais.
+
+```
+Crie um projeto chamado **ChatNeural** com **Node.js + Express + HTML/CSS/JS** puro, pronto para rodar no Replit.
+
+Requisitos mínimos e estáveis:
+- `server.js` com Express, CORS, estático de `public/`, porta `process.env.PORT || 3000`.
+- Endpoints: `POST /api/chat`, `POST /api/email`, `GET /api/health` (mesmo contrato do prompt completo).
+- `public/index.html` com layout de chat em bolhas (usuário direita, IA esquerda), seletor Clark/Ragnaria, campo de entrada e botão Enviar.
+- `public/app.js` com histórico curto (5 turnos), indicador “digitando…”, fetch para as rotas e toasts simples.
+- `public/styles.css` com tema limpo e responsivo (sem glassmorphism; apenas bordas arredondadas, sombras leves, espaçamento bom).
+- Auto-detecção de idioma PT-BR/EN baseada na mensagem do usuário.
+- Botão **Generate Email** que abre um modal simples com `textarea`, botão **Gerar**, e resultado com botão **Copy**.
+- OpenAI via `fetch` nativo (modelo `gpt-4o-mini`), chave em `process.env.OPENAI_API_KEY`.
+- `package.json` com `"start": "node server.js"` e `README.md` explicando como setar o Secret no Replit.
+- Entregar **código completo** sem omissões e sem TypeScript.
+```
