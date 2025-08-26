@@ -62,31 +62,11 @@ const AIControls: React.FC = () => {
   };
 
   return (
-    <>
-      {/* Brain Icon - Left of title */}
-      <div className="mr-3">
-        <div className="w-6 h-6 text-purple-600 flex items-center justify-center">
-          🧠
-        </div>
+    <div className="mr-3">
+      <div className="w-6 h-6 text-purple-600 flex items-center justify-center">
+        🧠
       </div>
-
-      {/* Assistant Toggle - Right of title */}
-      <div className="ml-3">
-        <Tooltip content={tooltips[currentAssistant][language]}>
-          <button
-            onClick={toggleAssistant}
-            className={`px-3 py-1 text-xs rounded-full font-medium transition-all duration-200 ${
-              currentAssistant === 'clark'
-                ? 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-                : 'bg-purple-400 text-white hover:bg-purple-500'
-            }`}
-            data-testid="assistant-toggle"
-          >
-            {currentAssistant === 'clark' ? 'Clark' : 'Ragnaria'}
-          </button>
-        </Tooltip>
-      </div>
-    </>
+    </div>
   );
 };
 

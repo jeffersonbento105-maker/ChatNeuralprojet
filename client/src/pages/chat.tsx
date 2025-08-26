@@ -278,7 +278,6 @@ export default function Chat() {
           <div className="flex items-center">
             <AIControls />
             <h1 className="chatneural-title">ChatNeural</h1>
-            <AIControls />
           </div>
           <PromoButtons />
         </div>
