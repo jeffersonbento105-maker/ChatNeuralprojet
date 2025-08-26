@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useChat } from "@/hooks/use-chat";
+import PromoButtons from "@/components/PromoButtons";
 
 export default function Chat() {
   const chat = useChat();
@@ -266,7 +267,10 @@ export default function Chat() {
   };
 
   return (
-    <div className="chatneural-app">
+    <div className="chatneural-app relative min-h-screen">
+      {/* Promo Buttons */}
+      <PromoButtons />
+      
       {/* Header */}
       <header className="chatneural-header">
         <div className="chatneural-header-content">
