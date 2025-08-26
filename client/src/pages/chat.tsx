@@ -3,7 +3,8 @@ import ChatContainer from "@/components/chat/ChatContainer";
 import EmailSidebar from "@/components/email/EmailSidebar";
 import { useChat } from "@/hooks/use-chat";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { Mail, ChefHat } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Chat() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -36,6 +37,18 @@ export default function Chat() {
                 <option value="clark">Clark - Analytical</option>
                 <option value="ragnaria">Ragnaria - Creative</option>
               </select>
+              
+              <Link href="/receitas">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-orange-600 hover:bg-orange-50"
+                  data-testid="recipe-viewer-link"
+                >
+                  <ChefHat size={18} />
+                  <span className="hidden sm:inline ml-1">Receitas</span>
+                </Button>
+              </Link>
               
               <Button
                 variant="ghost"

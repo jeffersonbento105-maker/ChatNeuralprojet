@@ -4,12 +4,14 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Chat from "@/pages/chat";
+import RecipeViewer from "@/pages/recipe-viewer";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Chat} />
       <Route path="/chat" component={Chat} />
+      <Route path="/receitas" component={RecipeViewer} />
       <Route component={Chat} />
     </Switch>
   );

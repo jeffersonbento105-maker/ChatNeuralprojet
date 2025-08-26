@@ -1,0 +1,45 @@
+{
+  "title": "Bolo de Cenoura",
+  "servings": 8,
+  "ingredients": [
+    {
+      "name": "cenoura",
+      "quantity": 250,
+      "unit": "g",
+      "notes": "descascadas e picadas"
+    },
+    {
+      "name": "ovos",
+      "quantity": 3,
+      "unit": "unidade"
+    },
+    {
+      "name": "óleo vegetal",
+      "quantity": 200,
+      "unit": "ml"
+    },
+    {
+      "name": "açúcar",
+      "quantity": 250,
+      "unit": "g"
+    },
+    {
+      "name": "farinha de trigo",
+      "quantity": 250,
+      "unit": "g"
+    },
+    {
+      "name": "fermento químico",
+      "quantity": 12,
+      "unit": "g"
+    }
+  ],
+  "steps": [
+    "Pré-aqueça o forno a 180°C.",
+    "Bata cenouras, ovos e óleo no liquidificador.",
+    "Misture açúcar e farinha em uma tigela.",
+    "Incorpore a mistura do liquidificador aos secos.",
+    "Adicione fermento e misture delicadamente.",
+    "Despeje em forma untada e asse por 40-45 minutos."
+  ]
+}
