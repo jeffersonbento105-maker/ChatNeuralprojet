@@ -1,6 +1,37 @@
 /* ChatNeural - Clean Reset and Base Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* Recipe content styling */
+.recipe-content {
+  line-height: 1.6;
+  font-family: Arial, sans-serif;
+}
+
+.recipe-content h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.recipe-content ul,
+.recipe-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.recipe-content li {
+  margin: 0.25rem 0;
+  line-height: 1.5;
+}
+
+.recipe-content ul li {
+  list-style-type: disc;
+}
+
+.recipe-content ol li {
+  list-style-type: decimal;
+}
+
 * {
   margin: 0;
   padding: 0;

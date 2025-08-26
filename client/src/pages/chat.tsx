@@ -295,16 +295,28 @@ export default function Chat() {
               </div>
             </div>
           ) : (
-            chat.messages.map((message, index) => (
-              <div 
-                key={index} 
-                className={`chatneural-message ${message.role}`}
-              >
-                <div className={`chatneural-bubble ${message.role}`}>
-                  {message.content}
+            chat.messages.map((message, index) => {
+              // Check if content contains HTML (recipe format)
+              const containsHTML = /<[^>]*>/g.test(message.content);
+              
+              return (
+                <div 
+                  key={index} 
+                  className={`chatneural-message ${message.role}`}
+                >
+                  <div className={`chatneural-bubble ${message.role}`}>
+                    {containsHTML ? (
+                      <div 
+                        dangerouslySetInnerHTML={{ __html: message.content }}
+                        className="recipe-content"
+                      />
+                    ) : (
+                      message.content
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
           
           {chat.isTyping && (
