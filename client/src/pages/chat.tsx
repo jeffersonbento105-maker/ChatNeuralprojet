@@ -3,7 +3,7 @@ import ChatContainer from "@/components/chat/ChatContainer";
 import EmailSidebar from "@/components/email/EmailSidebar";
 import { useChat } from "@/hooks/use-chat";
 import { Button } from "@/components/ui/button";
-import { Mail, ChefHat } from "lucide-react";
+import { Mail, ChefHat, Utensils } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Chat() {
@@ -47,6 +47,18 @@ export default function Chat() {
                 >
                   <ChefHat size={18} />
                   <span className="hidden sm:inline ml-1">Receitas</span>
+                </Button>
+              </Link>
+              
+              <Link href="/receita-simples">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-green-600 hover:bg-green-50"
+                  data-testid="simple-recipe-link"
+                >
+                  <Utensils size={18} />
+                  <span className="hidden sm:inline ml-1">Simples</span>
                 </Button>
               </Link>
               

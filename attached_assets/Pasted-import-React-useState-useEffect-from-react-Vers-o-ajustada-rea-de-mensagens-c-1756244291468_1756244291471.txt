@@ -1,0 +1,102 @@
+import React, { useState, useEffect } from "react";
+
+// Versão ajustada:
+// - Área de mensagens centralizada com largura fixa de ~720px (igual ChatGPT)
+// - Barra Send também respeita o mesmo limite
+// - Layout clean, espaçamento confortável
+
+const sampleRecipe = {
+  title: "🥕 Ingredientes do Bolo de Cenoura",
+  author: "Cozinha Exemplo",
+  servings: 8,
+  ingredients: [
+    "3 cenouras médias (aprox. 250 g descascadas e picadas)",
+    "3 ovos",
+    "200 ml de óleo vegetal (milho, girassol ou canola)",
+    "250 g de açúcar",
+    "250 g de farinha de trigo peneirada",
+    "1 colher de sopa (aprox. 12 g) de fermento químico em pó",
+    "1 pitada de sal"
+  ],
+  coverage: [
+    "200 g de açúcar",
+    "50 g de chocolate em pó",
+    "100 ml de leite",
+    "30 g de manteiga"
+  ],
+  steps: [
+    "Preaqueça o forno a 180°C.",
+    "Bata a cenoura, ovos e óleo no liquidificador.",
+    "Misture os secos e incorpore a mistura do liquidificador.",
+    "Adicione o fermento por último e asse por 35-40 minutos."
+  ]
+};
+
+function RecipeRenderer({ recipe }) {
+  const [servings] = useState(recipe.servings || 1);
+
+  return (
+    <div className="text-block">
+      <h2 className="title">{recipe.title}</h2>
+      <div className="author">por {recipe.author}</div>
+      <h4>Ingredientes</h4>
+      <ul className="ingredients-list">
+        {recipe.ingredients.map((ing, i) => (
+          <li key={i}>{ing}</li>
+        ))}
+      </ul>
+      <h4>🍫 Cobertura de chocolate (opcional)</h4>
+      <ul className="ingredients-list">
+        {recipe.coverage.map((ing, i) => (
+          <li key={i}>{ing}</li>
+        ))}
+      </ul>
+      <h4>Modo de Preparo</h4>
+      <ol>
+        {recipe.steps.map((s, i) => <li key={i}>{s}</li>)}
+      </ol>
+    </div>
+  );
+}
+
+export default function App() {
+  useEffect(() => {
+    const css = `
+      body { background: #f9fafb; font-family: Inter, sans-serif; }
+      .app { min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+      .chat-container { width:100%; max-width:720px; margin:0 auto; }
+      .messages { display:flex; flex-direction:column; gap:1.25rem; }
+      .text-block { background:#fff; padding:1.25rem; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+      .title { font-size:1.25rem; margin-bottom:.25rem; font-weight:600; }
+      .author { font-size:0.9rem; color:#6b7280; margin-bottom:.75rem; }
+      .ingredients-list li { margin-bottom:0.5rem; }
+      ol li { margin-bottom:0.5rem; }
+      .send-bar { position:fixed; bottom:0; left:0; right:0; padding:1rem; background:#fff; border-top:1px solid #e5e7eb; display:flex; justify-content:center; }
+      .send-inner { width:100%; max-width:720px; display:flex; gap:.5rem; }
+      .input { flex:1; padding:0.75rem 1rem; border-radius:8px; border:1px solid #d1d5db; }
+      .btn { padding:0.75rem 1.25rem; border-radius:8px; background:#111827; color:white; border:none; font-weight:500; cursor:pointer; }
+      .btn:hover { background:#1f2937; }
+    `;
+    const style = document.createElement('style');
+    style.id = 'custom-style';
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+    return () => { const el = document.getElementById('custom-style'); if(el) el.remove(); };
+  }, []);
+
+  return (
+    <div className="app">
+      <div className="chat-container">
+        <div className="messages">
+          <RecipeRenderer recipe={sampleRecipe} />
+        </div>
+      </div>
+      <div className="send-bar">
+        <div className="send-inner">
+          <input className="input" placeholder="Escreva uma mensagem..." />
+          <button className="btn">Send</button>
+        </div>
+      </div>
+    </div>
+  );
+}
