@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useChat } from "@/hooks/use-chat";
 import PromoButtons from "@/components/PromoButtons";
+import AIControls from "@/components/AIControls";
 
 export default function Chat() {
   const chat = useChat();
@@ -53,6 +54,7 @@ export default function Chat() {
         font-weight: 600;
         color: #374151;
         letter-spacing: -0.025em;
+        margin: 0;
       }
       
       .chatneural-main {
@@ -273,7 +275,11 @@ export default function Chat() {
       {/* Header */}
       <header className="chatneural-header">
         <div className="chatneural-header-content flex items-center justify-between">
-          <h1 className="chatneural-title">ChatNeural</h1>
+          <div className="flex items-center">
+            <AIControls />
+            <h1 className="chatneural-title">ChatNeural</h1>
+            <AIControls />
+          </div>
           <PromoButtons />
         </div>
       </header>
