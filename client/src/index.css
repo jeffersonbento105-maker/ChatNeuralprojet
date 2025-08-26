@@ -1,65 +1,34 @@
+/* ChatNeural - Clean Reset and Base Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(217, 33%, 17%);
-  --card: hsl(210, 40%, 98%);
-  --card-foreground: hsl(217, 33%, 17%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(217, 33%, 17%);
-  --primary: hsl(218, 91%, 60%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(217, 33%, 17%);
-  --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(210, 40%, 92%);
-  --muted-foreground: hsl(217, 33%, 17%);
-  --accent: hsl(214, 32%, 91%);
-  --accent-foreground: hsl(218, 91%, 60%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(214, 32%, 91%);
-  --input: hsl(210, 40%, 98%);
-  --ring: hsl(218, 91%, 60%);
-  --radius: 1.3rem;
-  --font-sans: 'Inter', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.dark {
-  --background: hsl(0, 0%, 0%);
-  --foreground: hsl(210, 40%, 98%);
-  --card: hsl(217, 33%, 17%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(0, 0%, 0%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(218, 91%, 60%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(210, 40%, 98%);
-  --secondary-foreground: hsl(217, 33%, 17%);
-  --muted: hsl(217, 33%, 17%);
-  --muted-foreground: hsl(215, 20%, 65%);
-  --accent: hsl(217, 33%, 17%);
-  --accent-foreground: hsl(218, 91%, 60%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(217, 33%, 17%);
-  --input: hsl(217, 33%, 17%);
-  --ring: hsl(218, 91%, 60%);
+html, body {
+  height: 100%;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+body {
+  background-color: #f7f7f8;
+  color: #374151;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  body {
-    @apply font-sans antialiased bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-  }
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* Remove any conflicting styles */
+.App {
+  height: 100%;
+  min-height: 100vh;
 }
 
 /* Animations */

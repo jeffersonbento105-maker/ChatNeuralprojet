@@ -1,98 +1,332 @@
 import { useState, useEffect } from "react";
-import ChatContainer from "@/components/chat/ChatContainer";
-import EmailSidebar from "@/components/email/EmailSidebar";
 import { useChat } from "@/hooks/use-chat";
-import { Button } from "@/components/ui/button";
-import { Mail, ChefHat, Utensils } from "lucide-react";
-import { Link } from "wouter";
 
 export default function Chat() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const chat = useChat();
+  const [input, setInput] = useState("");
 
   useEffect(() => {
-    document.title = "ChatNeural - AI Assistant Platform";
+    document.title = "ChatNeural";
+    
+    // Inject ChatGPT-style CSS
+    const css = `
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #f7f7f8;
+        line-height: 1.6;
+      }
+      
+      .chatneural-app {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #f7f7f8;
+      }
+      
+      .chatneural-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem;
+      }
+      
+      .chatneural-header-content {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      
+      .chatneural-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #374151;
+        letter-spacing: -0.025em;
+      }
+      
+      .chatneural-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-width: 720px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 2rem 1rem 120px 1rem;
+      }
+      
+      .chatneural-messages {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .chatneural-message {
+        display: flex;
+        animation: fadeInUp 0.3s ease-out;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .chatneural-message.user {
+        justify-content: flex-end;
+      }
+      
+      .chatneural-message.assistant {
+        justify-content: flex-start;
+      }
+      
+      .chatneural-bubble {
+        max-width: 80%;
+        padding: 1rem 1.25rem;
+        border-radius: 1.5rem;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+      
+      .chatneural-bubble.user {
+        background-color: #343541;
+        color: white;
+        margin-left: 20%;
+      }
+      
+      .chatneural-bubble.assistant {
+        background-color: white;
+        color: #374151;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-right: 20%;
+      }
+      
+      .chatneural-input-area {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid #e5e7eb;
+        padding: 1rem;
+        z-index: 100;
+      }
+      
+      .chatneural-input-container {
+        max-width: 720px;
+        margin: 0 auto;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      
+      .chatneural-input {
+        flex: 1;
+        padding: 0.875rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 1.5rem;
+        background: white;
+        font-size: 1rem;
+        font-family: inherit;
+        outline: none;
+        resize: none;
+        transition: all 0.2s ease;
+      }
+      
+      .chatneural-input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+      
+      .chatneural-send {
+        background: #343541;
+        color: white;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 0.875rem 1.5rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 1rem;
+        min-width: 80px;
+      }
+      
+      .chatneural-send:hover {
+        background: #40414f;
+        transform: translateY(-1px);
+      }
+      
+      .chatneural-send:active {
+        transform: translateY(0);
+      }
+      
+      .chatneural-send:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+        transform: none;
+      }
+      
+      /* Loading indicator */
+      .chatneural-typing {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #6b7280;
+        font-style: italic;
+      }
+      
+      .chatneural-typing::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #6b7280;
+        animation: typing 1.4s infinite ease-in-out;
+      }
+      
+      @keyframes typing {
+        0%, 80%, 100% {
+          opacity: 0.3;
+        }
+        40% {
+          opacity: 1;
+        }
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .chatneural-main {
+          padding: 1rem 0.75rem 120px 0.75rem;
+        }
+        
+        .chatneural-bubble {
+          max-width: 85%;
+          padding: 0.875rem 1rem;
+          border-radius: 1.25rem;
+        }
+        
+        .chatneural-input-area {
+          padding: 0.75rem;
+        }
+        
+        .chatneural-input {
+          padding: 0.75rem 1rem;
+          font-size: 0.95rem;
+        }
+        
+        .chatneural-send {
+          padding: 0.75rem 1.25rem;
+          font-size: 0.95rem;
+          min-width: 70px;
+        }
+      }
+    `;
+    
+    const style = document.createElement('style');
+    style.id = 'chatneural-styles';
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+    
+    return () => { 
+      const el = document.getElementById('chatneural-styles'); 
+      if(el) el.remove(); 
+    };
   }, []);
 
+  const handleSend = async () => {
+    if (!input.trim() || chat.isTyping) return;
+    
+    const message = input.trim();
+    setInput("");
+    await chat.sendMessage(message);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-lg border-b border-gray-200/50">
-        <div className="max-w-4xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-sm">
-                🧠
-              </div>
-              ChatNeural
-            </h1>
-            
-            <div className="flex items-center gap-3">
-              <select 
-                className="px-3 py-2 bg-white/90 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                value={chat.currentAssistant}
-                onChange={(e) => chat.switchAssistant(e.target.value as 'clark' | 'ragnaria')}
-                data-testid="assistant-selector"
-              >
-                <option value="clark">Clark - Analytical</option>
-                <option value="ragnaria">Ragnaria - Creative</option>
-              </select>
-              
-              <Link href="/receitas">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-600 hover:text-orange-600 hover:bg-orange-50"
-                  data-testid="recipe-viewer-link"
-                >
-                  <ChefHat size={18} />
-                  <span className="hidden sm:inline ml-1">Receitas</span>
-                </Button>
-              </Link>
-              
-              <Link href="/receita-simples">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-600 hover:text-green-600 hover:bg-green-50"
-                  data-testid="simple-recipe-link"
-                >
-                  <Utensils size={18} />
-                  <span className="hidden sm:inline ml-1">Simples</span>
-                </Button>
-              </Link>
-              
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="text-gray-600 hover:text-blue-600 hover:bg-blue-50"
-                data-testid="email-toggle"
-              >
-                <Mail size={18} />
-                <span className="hidden sm:inline ml-1">Email</span>
-              </Button>
-            </div>
-          </div>
+    <div className="chatneural-app">
+      {/* Header */}
+      <header className="chatneural-header">
+        <div className="chatneural-header-content">
+          <h1 className="chatneural-title">ChatNeural</h1>
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="pt-16 min-h-screen">
-        <div className="max-w-4xl mx-auto h-full">
-          <div className="flex h-screen">
-            {/* Chat Area */}
-            <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'mr-96' : ''}`}>
-              <ChatContainer chat={chat} />
+      {/* Main chat area */}
+      <main className="chatneural-main">
+        <div className="chatneural-messages">
+          {chat.messages.length === 0 ? (
+            <div className="chatneural-message assistant">
+              <div className="chatneural-bubble assistant">
+                Olá! Sou o ChatNeural. Como posso ajudá-lo hoje?
+              </div>
             </div>
-            
-            {/* Email Sidebar */}
-            <EmailSidebar 
-              isOpen={isSidebarOpen} 
-              onClose={() => setIsSidebarOpen(false)}
-              language={chat.language}
-            />
-          </div>
+          ) : (
+            chat.messages.map((message, index) => (
+              <div 
+                key={index} 
+                className={`chatneural-message ${message.role}`}
+              >
+                <div className={`chatneural-bubble ${message.role}`}>
+                  {message.content}
+                </div>
+              </div>
+            ))
+          )}
+          
+          {chat.isTyping && (
+            <div className="chatneural-message assistant">
+              <div className="chatneural-bubble assistant">
+                <div className="chatneural-typing">Digitando</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Input area */}
+      <div className="chatneural-input-area">
+        <div className="chatneural-input-container">
+          <textarea
+            className="chatneural-input"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Digite sua mensagem..."
+            rows={1}
+            disabled={chat.isTyping}
+            data-testid="message-input"
+          />
+          <button
+            className="chatneural-send"
+            onClick={handleSend}
+            disabled={chat.isTyping || !input.trim()}
+            data-testid="send-button"
+          >
+            Send
+          </button>
         </div>
       </div>
     </div>
