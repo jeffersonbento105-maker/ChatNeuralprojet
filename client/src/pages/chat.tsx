@@ -278,8 +278,8 @@ export default function Chat() {
         <div className="chatneural-header-content flex items-center justify-between">
           <div className="flex items-center">
             <AIControls />
-            <h1 className="chatneural-title">ChatNeural</h1>
             <AssistantToggle />
+            <h1 className="chatneural-title">ChatNeural</h1>
           </div>
           <PromoButtons />
         </div>

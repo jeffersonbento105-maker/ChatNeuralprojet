@@ -62,7 +62,7 @@ const AssistantToggle: React.FC = () => {
   };
 
   return (
-    <div className="ml-3">
+    <div className="mr-4">
       <Tooltip content={tooltips[currentAssistant][language]}>
         <button
           onClick={toggleAssistant}
