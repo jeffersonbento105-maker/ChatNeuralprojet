@@ -1,0 +1,31 @@
+import os
+import subprocess
+
+def add_commit_push(repo_url, commit_message, branch='main'):
+    """
+    Adiciona todos os arquivos do projeto, cria um commit e faz push para o repositório remoto.
+
+    Args:
+        repo_url (str): URL do repositório remoto no GitHub.
+        commit_message (str): Mensagem do commit.
+        branch (str): Branch para a qual o push será feito (padrão: 'main').
+    """
+    try:
+        # Adiciona todos os arquivos no diretório atual
+        subprocess.run(['git', 'add', '.'], check=True)
+
+        # Commita as mudanças
+        subprocess.run(['git', 'commit', '-m', commit_message], check=True)
+
+        # Faz push para o repositório remoto
+        subprocess.run(['git', 'push', repo_url, branch], check=True)
+
+        print("Arquivos adicionados, commit criado e push realizado com sucesso!")
+
+    except subprocess.CalledProcessError as e:
+        print(f"Ocorreu um erro: {e}")
+
+if __name__ == "__main__":
+    repo_url = "https://github.com/jeffersonbento105-maker/ChatNeural.git"
+    commit_message = "Primeiro commit do ChatNeural"
+    add_commit_push(repo_url, commit_message)
