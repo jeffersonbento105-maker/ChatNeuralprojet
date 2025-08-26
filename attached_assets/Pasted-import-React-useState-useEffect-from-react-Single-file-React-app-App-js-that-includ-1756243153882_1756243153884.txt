@@ -1,0 +1,227 @@
+import React, { useState, useEffect } from "react";
+
+// Single-file React app (App.js) that includes:
+// - sample JSON (generic text + recipe)
+// - TextRenderer component that renders clean JSON (strips simple Markdown)
+// - Recipe scaler utility
+// - Basic CSS injected at runtime (ChatGPT-like centered layout + fixed send bar)
+// - A ready-to-copy Replit IA prompt string (shown in a textarea) for you to paste into Replit's AI helper
+
+// ------------------ Sample JSON data ------------------
+const sampleText = {
+  title: "Explicação sobre Revolução Francesa",
+  author: "ChatGPT",
+  content: [
+    "A Revolução Francesa começou em 1789 e foi um período de grandes mudanças políticas, sociais e culturais na França.",
+    "Ela resultou na queda da monarquia, no fortalecimento do conceito de cidadania e nos ideais de liberdade, igualdade e fraternidade.",
+    "Entre os principais eventos estão a Queda da Bastilha, a Declaração dos Direitos do Homem e do Cidadão e o Reinado do Terror."
+  ]
+};
+
+const sampleRecipe = {
+  title: "Bolo de Cenoura (receita base)",
+  author: "Cozinha Exemplo",
+  servings: 8,
+  ingredients: [
+    { name: "Cenoura ralada", amount: 250, unit: "g" },
+    { name: "Açúcar", amount: 200, unit: "g" },
+    { name: "Farinha de trigo", amount: 250, unit: "g" },
+    { name: "Ovos", amount: 3, unit: "un" },
+    { name: "Óleo", amount: 120, unit: "ml" },
+    { name: "Fermento em pó", amount: 10, unit: "g" }
+  ],
+  steps: [
+    "Preaqueça o forno a 180°C.",
+    "Bata a cenoura, ovos e óleo no liquidificador.",
+    "Misture os secos e incorpore a mistura do liquidificador.",
+    "Adicione o fermento por último e asse por 35-40 minutos."
+  ]
+};
+
+// ------------------ Utilities ------------------
+function stripSimpleMarkdown(text) {
+  // Remove bold/italic marks and trim
+  return text.replace(/\*\*/g, "").replace(/\*/g, "").trim();
+}
+
+function parseSimpleMarkdownToNodes(text) {
+  // Very small parser: splits text by lines and recognizes headings (#), lists (- )
+  const lines = text.split(/\n+/).map(l => l.trim());
+  const nodes = [];
+  let currentList = null;
+
+  for (const line of lines) {
+    if (!line) continue;
+    if (line.startsWith('#')) {
+      const level = line.match(/^#+/)[0].length;
+      const content = line.replace(/^#+\s*/, '');
+      if (currentList) { nodes.push({ type: 'ul', items: currentList }); currentList = null; }
+      nodes.push({ type: 'h', level, content });
+    } else if (line.startsWith('- ')) {
+      const item = line.replace(/^-\s*/, '');
+      if (!currentList) currentList = [];
+      currentList.push(item);
+    } else {
+      if (currentList) { nodes.push({ type: 'ul', items: currentList }); currentList = null; }
+      nodes.push({ type: 'p', content: line });
+    }
+  }
+  if (currentList) nodes.push({ type: 'ul', items: currentList });
+  return nodes;
+}
+
+function scaleIngredients(ingredients, originalServings, newServings) {
+  if (!originalServings || originalServings === 0) return ingredients;
+  const factor = newServings / originalServings;
+  return ingredients.map(i => ({ ...i, amount: Math.round((i.amount * factor) * 10) / 10 }));
+}
+
+// ------------------ Components ------------------
+function TextRenderer({ data }) {
+  if (!data) return null;
+
+  // Render recipe specially if it matches recipe keys
+  if (data.ingredients && data.steps) {
+    return <RecipeRenderer recipe={data} />;
+  }
+
+  return (
+    <div className="text-block">
+      {data.title && <h2 className="title">{stripSimpleMarkdown(data.title)}</h2>}
+      {data.author && <div className="author">por {stripSimpleMarkdown(data.author)}</div>}
+      <div className="content">
+        {Array.isArray(data.content)
+          ? data.content.map((p, idx) => <p key={idx}>{stripSimpleMarkdown(p)}</p>)
+          : parseSimpleMarkdownToNodes(String(data.content)).map((node, idx) => {
+              if (node.type === 'h') return <h3 key={idx}>{stripSimpleMarkdown(node.content)}</h3>;
+              if (node.type === 'ul') return <ul key={idx}>{node.items.map((it, i) => <li key={i}>{stripSimpleMarkdown(it)}</li>)}</ul>;
+              return <p key={idx}>{stripSimpleMarkdown(node.content)}</p>;
+            })}
+      </div>
+    </div>
+  );
+}
+
+function RecipeRenderer({ recipe }) {
+  const [servings, setServings] = useState(recipe.servings || 1);
+  const scaled = scaleIngredients(recipe.ingredients, recipe.servings || 1, servings);
+
+  return (
+    <div className="text-block">
+      <h2 className="title">{recipe.title}</h2>
+      <div className="author">por {recipe.author}</div>
+      <div className="meta">Rende: <input type="number" value={servings} min="1" onChange={e => setServings(Number(e.target.value)||1)} style={{width: '4rem'}} /> porções</div>
+      <h4>Ingredientes</h4>
+      <ul>
+        {scaled.map((ing, i) => (
+          <li key={i}>{ing.amount} {ing.unit} — {ing.name}</li>
+        ))}
+      </ul>
+      <h4>Modo de Preparo</h4>
+      <ol>
+        {recipe.steps.map((s, i) => <li key={i}>{s}</li>)}
+      </ol>
+    </div>
+  );
+}
+
+// Simple message bubble list to show how it looks in a chat
+function ChatPlayground({ items }) {
+  return (
+    <div className="messages">
+      {items.map((it, idx) => (
+        <div className={`message ${it.role || 'assistant'}`} key={idx}>
+          <TextRenderer data={it.data} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ------------------ Replit prompt (ready to paste) ------------------
+const REPLIT_PROMPT = `Replit AI — Instruções detalhadas para recriar o front-end:
+
+1) Apague arquivos duplicados (App.js antigo, index.js antigo) mantendo package.json e node_modules.
+2) Crie um arquivo src/App.js com o conteúdo que eu vou colar (o intuito: um single-file React app que renderiza JSON limpo). Use apenas CSS leve; NÃO alterar as cores originais do projeto sem autorização.
+3) Layout: conter um container central (max-width ~720px), fundo cinza-claro, caixas brancas com sombra suave para mensagens, barra de envio fixa no rodapé (comportamento igual ao ChatGPT: fixa, não se move com o conteúdo), campo de input e botão Send.
+4) Implementar TextRenderer que aceita JSON limpo (title, author, content[]) e também estrutura de receitas (ingredients[], steps[], servings) — converter e escalar receitas conforme a entrada do usuário.
+5) Fornecer sample.json em src/data/sample.json com dois exemplos (texto genérico e receita), e garantir que ao rodar a aplicação, esses exemplos apareçam no playground.
+6) Não alterar fontes e cores base do projeto sem pedir aprovação. Use CSS leve e responsivo.
+
+Observação: este prompt cria apenas front-end. Não mexer nos endpoints backend. Forneça instruções de como rodar: npm install && npm start.`;
+
+// ------------------ Main App ------------------
+export default function App() {
+  useEffect(() => {
+    // inject CSS once
+    const css = `
+      :root{--bg:#f3f4f6;--card:#ffffff;--muted:#6b7280}
+      body { background: var(--bg); font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+      .app { min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+      .container { width:100%; max-width:720px; }
+      .chat-window { background: transparent; padding-bottom:80px; }
+      .messages { display:flex; flex-direction:column; gap:1rem; }
+      .message { display:block; }
+      .text-block { background: var(--card); padding:1rem 1.25rem; border-radius:12px; box-shadow: 0 6px 18px rgba(15,23,42,0.06); }
+      .title { margin:0 0 .25rem 0; font-size:1.125rem; }
+      .author { color: var(--muted); font-size:0.9rem; margin-bottom:0.5rem }
+      .content p { margin:0 0 .75rem 0; line-height:1.6 }
+      .meta { margin: .5rem 0; }
+      /* send bar fixed */
+      .send-bar { position:fixed; left:0; right:0; bottom:0; display:flex; justify-content:center; padding:0.75rem; background: rgba(243,244,246,0.95); box-shadow: 0 -6px 18px rgba(15,23,42,0.03); }
+      .send-inner { width:100%; max-width:720px; display:flex; gap:.5rem; }
+      .input { flex:1; padding:.75rem 1rem; border-radius:10px; border:1px solid rgba(15,23,42,0.06); background:#fff }
+      .btn { padding:.75rem 1rem; border-radius:10px; border:none; background:#111827; color:white }
+      .prompt-area { margin-top:1rem; }
+      @media (max-width:480px){ .text-block{ border-radius:8px; } }
+    `;
+    const style = document.createElement('style');
+    style.id = 'replit-sample-styles';
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+    return () => { const el = document.getElementById('replit-sample-styles'); if(el) el.remove(); };
+  }, []);
+
+  const [items] = useState([
+    { role: 'assistant', data: sampleText },
+    { role: 'assistant', data: sampleRecipe }
+  ]);
+
+  const [input, setInput] = useState('');
+  const [showPrompt, setShowPrompt] = useState(false);
+
+  return (
+    <div className="app">
+      <div className="container">
+        <div className="chat-window">
+          <ChatPlayground items={items} />
+
+          <div className="prompt-area">
+            <button onClick={() => setShowPrompt(s => !s)} className="btn">{showPrompt ? 'Esconder' : 'Mostrar'} prompt Replit</button>
+            {showPrompt && (
+              <div style={{marginTop:'.75rem'}}>
+                <textarea readOnly value={REPLIT_PROMPT} style={{width:'100%',height:200,padding:10,fontFamily:'monospace'}} />
+                <div style={{marginTop:8}}>Copie esse texto e cole no assistente AI do Replit (ou salve como replit-prompt.txt).</div>
+              </div>
+            )}
+          </div>
+
+        </div>
+      </div>
+
+      <div className="send-bar">
+        <div className="send-inner">
+          <input className="input" placeholder="Escreva uma pergunta ou cole JSON limpo aqui..." value={input} onChange={e=>setInput(e.target.value)} />
+          <button className="btn" onClick={()=>{ if(!input) return; try{ const parsed = JSON.parse(input); alert('JSON válido — copie para seu arquivo src/data/sample.json ou envie para o backend.'); }catch(e){ alert('Não é JSON válido — usarei como mensagem simples: '+input.slice(0,80)); } setInput(''); }}>Send</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ------------------ Instruções de uso rápidas (no arquivo):
+// 1) Cole este componente em src/App.js em um projeto React criado pelo Replit (ou create-react-app).
+// 2) Rode: npm install && npm start
+// 3) O App já mostra exemplos de JSON (texto e receita). Use o botão "Mostrar prompt Replit" para copiar as instruções detalhadas para o assistente do Replit.
+
+// Se você quiser os arquivos separados (index.html, src/index.js, src/App.js, src/components/TextRenderer.jsx, src/data/sample.json, src/styles.css) eu posso gerar agora em arquivos separados — diga se prefere assim.`}

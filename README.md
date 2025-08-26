@@ -1,80 +1,133 @@
-# ChatNeural - AI Assistant Platform
+# ChatNeural - Text Renderer
 
-Um aplicativo web moderno de chatbot com assistentes IA analíticos e criativos, geração de e-mails profissionais e interface glassmorphism.
+Um visualizador dinâmico de texto e receitas construído com React, que renderiza JSON limpo e estruturado com design moderno inspirado no ChatGPT.
 
-## 🚀 Deploy no Replit
+## 🚀 Funcionalidades
 
-Este projeto está configurado para rodar automaticamente no Replit. Siga estes passos:
-
-### 1. Configurar API Key do OpenAI
-
-1. Vá para a aba **Secrets** no painel lateral do Replit
-2. Adicione um novo secret com a chave: `OPENAI_API_KEY`
-3. Cole sua chave da API OpenAI como valor
-4. Salve o secret
-
-### 2. Executar o Projeto
-
-1. Clique no botão **Run** no Replit
-2. O projeto iniciará automaticamente na porta configurada
-3. Acesse o aplicativo na URL fornecida pelo Replit
-
-## ✨ Funcionalidades
-
-### 🤖 Assistentes IA
-- **Clark**: Assistente analítico e objetivo
-  - Respostas estruturadas e educativas
-  - Explicações passo-a-passo
-  - Máximo 1 emoji por resposta
-  
-- **Ragnaria**: Assistente criativa e acolhedora
-  - Ideias inovadoras e exemplos práticos
-  - Linguagem leve e amigável
-  - 2-3 emojis quando apropriado
-
-### 💬 Interface de Chat
-- Bolhas de conversa modernas (usuário à direita, IA à esquerda)
-- Indicador "digitando..." com animação
-- Histórico curto de 5 turnos mantido automaticamente
-- Suporte a Enter para enviar e Shift+Enter para nova linha
-- Auto-redimensionamento do campo de texto
-
-### 📧 Gerador de E-mails
-- Painel lateral para geração de e-mails profissionais
-- 3 tons disponíveis: Formal, Neutro, Amigável
-- Detecção automática de idioma (PT-BR/EN)
-- Botões para copiar e regenerar e-mails
-
-### 🌐 Detecção de Idioma
-- Suporte automático para Português e Inglês
-- System prompts adaptativos por idioma
-- Interface se adapta ao idioma detectado
-
-### 🎨 Design
-- Tema glassmorphism com transparências sutis
-- Gradientes roxo→azul no cabeçalho
-- Cantos arredondados 2xl e sombras suaves
-- Microanimações em hover/focus
-- Totalmente responsivo (320px+ até desktop)
-
-## 🛠️ Tecnologias
-
-### Backend
-- Node.js 18+ com fetch nativo
-- Express.js para API REST
-- OpenAI API (modelo gpt-4o)
-- CORS configurado
-
-### Frontend
-- HTML5 puro
-- CSS3 com glassmorphism e animações
-- JavaScript ES6+ vanilla
-- Bootstrap 5 via CDN
-
-### Endpoints da API
-- `GET /api/health` - Status da aplicação
-- `POST /api/chat` - Envio de mensagens para assistentes
-- `POST /api/email` - Geração de e-mails profissionais
+- **Renderização dinâmica** de JSON estruturado
+- **Suporte a receitas** com escalonamento de ingredientes
+- **Interface ChatGPT-like** com mensagens em bolhas
+- **Barra de envio fixa** no rodapé
+- **Design responsivo** e moderno
+- **Limpeza automática** de markdown simples (**, *)
+- **Playground interativo** para testar JSON
 
 ## 📁 Estrutura do Projeto
 
+```
+src/
+├── components/
+│   ├── TextRenderer.jsx      # Renderizador principal
+│   ├── RecipeRenderer.jsx    # Renderizador específico para receitas
+│   ├── ChatPlayground.jsx    # Container de mensagens
+│   └── SendBar.jsx          # Barra de entrada fixa
+├── data/
+│   └── sample.json          # Dados de exemplo
+├── utils/
+│   ├── textUtils.js         # Utilitários de texto
+│   └── recipeUtils.js       # Utilitários de receitas
+├── styles/
+│   └── styles.css           # Estilos principais
+├── App.js                   # Componente principal
+└── index.js                 # Entrada da aplicação
+```
+
+## 🛠️ Como executar
+
+### Pré-requisitos
+- Node.js 16+ 
+- npm ou yarn
+
+### Instalação
+```bash
+# Clone o projeto
+git clone <repository-url>
+
+# Instale as dependências
+npm install
+
+# Execute o projeto
+npm start
+```
+
+A aplicação estará disponível em `http://localhost:3000`
+
+## 📝 Formatos de JSON Suportados
+
+### Texto Genérico
+```json
+{
+  "title": "Título do Conteúdo",
+  "author": "Nome do Autor",
+  "content": [
+    "Parágrafo 1",
+    "Parágrafo 2",
+    "Parágrafo 3"
+  ]
+}
+```
+
+### Receitas
+```json
+{
+  "title": "Nome da Receita",
+  "author": "Chef/Fonte",
+  "servings": 8,
+  "ingredients": [
+    { "name": "Farinha", "amount": 250, "unit": "g" },
+    { "name": "Açúcar", "amount": 200, "unit": "g" }
+  ],
+  "steps": [
+    "Passo 1 da receita",
+    "Passo 2 da receita"
+  ]
+}
+```
+
+## 🎨 Características do Design
+
+- **Layout centralizado** com largura máxima de 720px
+- **Fundo cinza claro** (#f3f4f6)
+- **Cartões brancos** com sombra suave para mensagens
+- **Barra de envio fixa** que não se move com o scroll
+- **Animações suaves** de entrada para mensagens
+- **Tipografia Inter** para melhor legibilidade
+
+## 🔧 Utilitários Incluídos
+
+### Texto (`textUtils.js`)
+- `stripSimpleMarkdown()` - Remove formatação básica
+- `parseSimpleMarkdownToNodes()` - Converte texto em nós estruturados
+
+### Receitas (`recipeUtils.js`)
+- `scaleIngredients()` - Escala ingredientes por porção
+- `estimateCookingTime()` - Calcula tempo estimado
+- `validateRecipe()` - Valida estrutura de receita
+- `formatIngredient()` - Formata ingredientes para exibição
+
+## 📱 Responsividade
+
+- **Desktop**: Layout completo com máxima largura
+- **Tablet**: Ajustes de padding e espaçamento  
+- **Mobile**: Interface otimizada para telas pequenas
+
+## 🧪 Testes
+
+O projeto inclui `data-testid` em elementos principais para facilitar testes automatizados:
+
+- `message-input` - Campo de entrada
+- `send-button` - Botão de envio
+- `chat-messages` - Container de mensagens
+- `recipe-title` - Título da receita
+- `servings-input` - Campo de ajuste de porções
+
+## 🚀 Deploy no Replit
+
+1. Crie um novo Repl React
+2. Cole os arquivos na estrutura correta
+3. Execute `npm install && npm start`
+4. A aplicação estará disponível na URL do Replit
+
+## 📄 Licença
+
+Este projeto é open source e disponível sob a [MIT License](LICENSE).

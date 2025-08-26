@@ -1,0 +1,30 @@
+{
+  "text": {
+    "title": "Explicação sobre Revolução Francesa",
+    "author": "ChatGPT",
+    "content": [
+      "A Revolução Francesa começou em 1789 e foi um período de grandes mudanças políticas, sociais e culturais na França.",
+      "Ela resultou na queda da monarquia, no fortalecimento do conceito de cidadania e nos ideais de liberdade, igualdade e fraternidade.",
+      "Entre os principais eventos estão a Queda da Bastilha, a Declaração dos Direitos do Homem e do Cidadão e o Reinado do Terror."
+    ]
+  },
+  "recipe": {
+    "title": "Bolo de Cenoura (receita base)",
+    "author": "Cozinha Exemplo",
+    "servings": 8,
+    "ingredients": [
+      { "name": "Cenoura ralada", "amount": 250, "unit": "g" },
+      { "name": "Açúcar", "amount": 200, "unit": "g" },
+      { "name": "Farinha de trigo", "amount": 250, "unit": "g" },
+      { "name": "Ovos", "amount": 3, "unit": "un" },
+      { "name": "Óleo", "amount": 120, "unit": "ml" },
+      { "name": "Fermento em pó", "amount": 10, "unit": "g" }
+    ],
+    "steps": [
+      "Preaqueça o forno a 180°C.",
+      "Bata a cenoura, ovos e óleo no liquidificador.",
+      "Misture os secos e incorpore a mistura do liquidificador.",
+      "Adicione o fermento por último e asse por 35-40 minutos."
+    ]
+  }
+}
