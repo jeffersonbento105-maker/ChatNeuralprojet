@@ -43,7 +43,9 @@ export default function Chat() {
       .chatneural-header-content {
         max-width: 720px;
         margin: 0 auto;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
       
       .chatneural-title {
@@ -268,13 +270,11 @@ export default function Chat() {
 
   return (
     <div className="chatneural-app relative min-h-screen">
-      {/* Promo Buttons */}
-      <PromoButtons />
-      
       {/* Header */}
       <header className="chatneural-header">
-        <div className="chatneural-header-content">
+        <div className="chatneural-header-content flex items-center justify-between">
           <h1 className="chatneural-title">ChatNeural</h1>
+          <PromoButtons />
         </div>
       </header>
 

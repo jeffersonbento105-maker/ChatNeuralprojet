@@ -7,8 +7,9 @@ O componente `PromoButtons` foi criado em `client/src/components/PromoButtons.ts
 ## Características Implementadas
 
 ### Posicionamento
-- Localizado no canto superior esquerdo (`absolute top-4 left-4`)
-- Com `z-index: 40` para ficar acima do conteúdo mas abaixo de modais
+- Localizado na mesma altura do título "ChatNeural", alinhados à direita
+- Integrado no header usando `flex justify-between` 
+- Layout horizontal (`flex gap-2`) para os botões ficarem lado a lado
 - Não interfere no layout existente
 
 ### Botões
@@ -57,8 +58,8 @@ O componente `PromoButtons` foi criado em `client/src/components/PromoButtons.ts
 O componente foi automaticamente integrado em:
 
 1. **Importado** em `client/src/pages/chat.tsx`
-2. **Renderizado** dentro do container principal com `relative min-h-screen`
-3. **Posicionado** de forma absoluta para não afetar o layout
+2. **Renderizado** dentro do header ao lado do título "ChatNeural"
+3. **Posicionado** usando flexbox para alinhamento perfeito com o título
 
 ## Como Usar em Outros Projetos
 

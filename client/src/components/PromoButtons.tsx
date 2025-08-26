@@ -64,9 +64,9 @@ const PromoButtons: React.FC = () => {
   };
 
   return (
-    <div className="absolute top-4 right-4 z-40 flex gap-2">
+    <div className="flex gap-2 items-center">
       {/* Email Button */}
-      <Tooltip content={tooltips.email[language]} position="left">
+      <Tooltip content={tooltips.email[language]}>
         <button 
           className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm rounded-md shadow-md transition-colors duration-200 flex items-center justify-center"
           data-testid="promo-email-button"
@@ -76,7 +76,7 @@ const PromoButtons: React.FC = () => {
       </Tooltip>
 
       {/* Cake Button */}
-      <Tooltip content={tooltips.cake[language]} position="left">
+      <Tooltip content={tooltips.cake[language]}>
         <button 
           className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 text-sm rounded-md shadow-md transition-colors duration-200 flex items-center justify-center"
           data-testid="promo-cake-button"
