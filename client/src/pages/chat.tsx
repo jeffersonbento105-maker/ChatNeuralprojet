@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useChat } from "@/hooks/use-chat";
 import PromoButtons from "@/components/PromoButtons";
 import AIControls from "@/components/AIControls";
+import AssistantToggle from "@/components/AssistantToggle";
 
 export default function Chat() {
   const chat = useChat();
@@ -278,6 +279,7 @@ export default function Chat() {
           <div className="flex items-center">
             <AIControls />
             <h1 className="chatneural-title">ChatNeural</h1>
+            <AssistantToggle />
           </div>
           <PromoButtons />
         </div>
