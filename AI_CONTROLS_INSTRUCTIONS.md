@@ -15,7 +15,7 @@ O componente `AIControls` foi criado em `client/src/components/AIControls.tsx` e
 ### Ícone de Cérebro (Esquerda)
 - **Ícone**: 🧠 (emoji de cérebro)
 - **Cor**: Roxo (`text-purple-600`)
-- **Animação**: Rotação contínua suave (3 segundos por volta)
+- **Animação**: Nenhuma (imagem fixa)
 - **Tamanho**: Pequeno e discreto (`w-6 h-6`)
 - **Posição**: Margem direita de 12px (`mr-3`)
 
@@ -107,27 +107,16 @@ function App() {
 - **Acessibilidade**: Inclui `data-testid` para testes
 - **Performance**: Lightweight, sem dependências externas
 
-## Animação CSS
+## Estilo Visual
 
-```css
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-```
-
-A animação roda continuamente em 3 segundos por volta completa.
+O ícone do cérebro é uma imagem fixa sem animação, mantendo o design limpo e discreto conforme solicitado.
 
 ## Customização
 
 Para personalizar as cores, textos ou animação, edite o arquivo `client/src/components/AIControls.tsx`:
 
 - **Cores**: Modifique as classes `bg-gray-200`, `bg-purple-400`, `text-purple-600`
-- **Animação**: Altere `animation: 'spin 3s linear infinite'` para ajustar velocidade
+- **Estilo**: Modifique classes CSS para ajustar aparência
 - **Textos**: Edite o objeto `tooltips` com as mensagens
 - **Idiomas**: Adicione novos idiomas no objeto `tooltips` e na lógica de detecção
 
@@ -146,4 +135,4 @@ A alternância entre assistentes é puramente visual e não afeta a lógica do c
 - Tooltips só aparecem no hover, não alteram o layout
 - Compatível com todos os browsers modernos
 - Funciona em dispositivos móveis e desktop
-- A animação do cérebro é suave e não distrai do conteúdo
+- O ícone do cérebro é fixo e não distrai do conteúdo

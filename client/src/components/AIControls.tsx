@@ -65,12 +65,7 @@ const AIControls: React.FC = () => {
     <>
       {/* Brain Icon - Left of title */}
       <div className="mr-3">
-        <div 
-          className="w-6 h-6 text-purple-600 animate-spin-slow flex items-center justify-center"
-          style={{
-            animation: 'spin 3s linear infinite'
-          }}
-        >
+        <div className="w-6 h-6 text-purple-600 flex items-center justify-center">
           🧠
         </div>
       </div>
@@ -91,17 +86,6 @@ const AIControls: React.FC = () => {
           </button>
         </Tooltip>
       </div>
-
-      <style jsx>{`
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
     </>
   );
 };
