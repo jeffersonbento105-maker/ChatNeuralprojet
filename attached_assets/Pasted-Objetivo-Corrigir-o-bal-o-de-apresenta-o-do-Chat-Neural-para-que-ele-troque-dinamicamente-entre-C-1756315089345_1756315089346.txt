@@ -1,0 +1,91 @@
+Objetivo: Corrigir o balão de apresentação do Chat Neural para que ele *troque dinamicamente entre Clark e Ragnaria* quando o usuário clicar no botão de troca de personagens, *sem alterar o design, layout ou dimensões do balão*.
+
+Instruções para a IA:
+
+1. *HTML*
+   - Estrutura do balão de apresentação (div) e botão de troca de personagens (button) com IDs claros:
+     - introBalloon → balão de apresentação
+     - toggleCharacter → botão de troca
+   - O balão deve inicialmente mostrar o texto do personagem Clark.
+   - O botão deve permitir alternar entre Clark e Ragnaria.
+
+2. *CSS*
+   - Mantenha o design exatamente igual: cores, fontes, tamanho, bordas, espaçamento e layout.
+   - Apenas o mínimo necessário para visibilidade e funcionalidade.
+
+3. *JS*
+   - Adicione um listener de clique no botão que altere dinamicamente o texto do balão conforme o personagem selecionado:
+     - Clark: "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+     - Ragnaria: "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+   - A troca deve ocorrer *instantaneamente*, sem recarregar a página.
+   - Nenhuma outra funcionalidade ou estilo deve ser alterado.
+
+4. *Integração*
+   - Combine HTML, CSS e JS em um único código funcional.
+   - O código gerado deve ser *diretamente colável no Replit* e funcionar imediatamente.
+
+---
+
+### *Código funcional integrado*
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Chat Neural - Balão Dinâmico</title>
+<style>
+  /* Estilo do balão - mantém o design original */
+  #introBalloon {
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    padding: 15px;
+    width: 400px;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  /* Botão de troca */
+  #toggleCharacter {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- Balão de apresentação -->
+<div id="introBalloon">
+  Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?
+</div>
+
+<!-- Botão de troca de personagem -->
+<button id="toggleCharacter" data-character="Clark">Trocar para Ragnaria</button>
+
+<script>
+  const toggleButton = document.getElementById('toggleCharacter');
+  const balloon = document.getElementById('introBalloon');
+
+  toggleButton.addEventListener('click', () => {
+    let current = toggleButton.dataset.character;
+    
+    if(current === 'Clark'){
+      // Troca para Ragnaria
+      balloon.innerText = "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+      toggleButton.dataset.character = "Ragnaria";
+      toggleButton.innerText = "Trocar para Clark";
+    } else {
+      // Troca para Clark
+      balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+      toggleButton.dataset.character = "Clark";
+      toggleButton.innerText = "Trocar para Ragnaria";
+    }
+  });
+</script>
+
+</body>
+</html>

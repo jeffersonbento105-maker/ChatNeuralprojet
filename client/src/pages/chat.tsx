@@ -272,39 +272,26 @@ export default function Chat() {
     }
   };
 
-  // JavaScript puro para garantir troca dinâmica do balão
+  // Configuração inicial do balão dinâmico
   useEffect(() => {
-    const setupDynamicToggle = () => {
+    const setupInitialState = () => {
       const toggleButton = document.getElementById('toggleCharacter');
       const balloon = document.getElementById('introBalloon');
       
       if (toggleButton && balloon) {
-        const updateBalloon = () => {
-          const character = toggleButton.getAttribute('data-character');
-          
-          if (character === 'clark') {
-            balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-          } else if (character === 'ragnaria') {
-            balloon.innerText = "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-          }
-        };
+        // Define estado inicial
+        toggleButton.setAttribute('data-character', currentAssistant);
         
-        // Executar uma vez para definir o estado inicial
-        updateBalloon();
-        
-        // Observer para detectar mudanças no data-character
-        const observer = new MutationObserver(updateBalloon);
-        observer.observe(toggleButton, { 
-          attributes: true, 
-          attributeFilter: ['data-character'] 
-        });
-        
-        return () => observer.disconnect();
+        if (currentAssistant === 'clark') {
+          balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+        } else {
+          balloon.innerText = "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+        }
       }
     };
     
     // Executar após um pequeno delay para garantir que os elementos existam
-    const timer = setTimeout(setupDynamicToggle, 100);
+    const timer = setTimeout(setupInitialState, 50);
     return () => clearTimeout(timer);
   }, [currentAssistant]);
 
