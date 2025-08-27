@@ -9,14 +9,6 @@ const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssi
   const toggleAssistant = () => {
     const newAssistant = currentAssistant === 'clark' ? 'ragnaria' : 'clark';
     onToggle(newAssistant);
-    
-    // Atualiza o data-character e dispara o clique para ativar o JavaScript puro
-    setTimeout(() => {
-      const toggleButton = document.getElementById('toggleCharacter');
-      if (toggleButton) {
-        toggleButton.click();
-      }
-    }, 10);
   };
 
   return (
