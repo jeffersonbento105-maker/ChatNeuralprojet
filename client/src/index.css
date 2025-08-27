@@ -139,7 +139,7 @@ body {
   cursor: pointer;
 }
 
-/* Language selector positioning below Recipes button */
+/* Promo buttons positioning */
 .promo-buttons-fixed {
   position: fixed;
   right: 20px;

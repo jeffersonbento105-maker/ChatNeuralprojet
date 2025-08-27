@@ -42,7 +42,7 @@ const PromoButtons: React.FC = () => {
         <button 
           onClick={() => window.open('/email', '_blank')}
           className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
-          data-testid="promo-email-button"
+          data-testid="button-email"
         >
           <span className="text-sm font-medium">Send Email</span>
           <span className="text-base">📧</span>
@@ -54,7 +54,7 @@ const PromoButtons: React.FC = () => {
         <button 
           onClick={() => window.open('/recipe-viewer', '_blank')}
           className="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
-          data-testid="promo-recipes-button"
+          data-testid="button-recipes"
         >
           <span className="text-sm font-medium">Recipes</span>
           <span className="text-base">🍰</span>
