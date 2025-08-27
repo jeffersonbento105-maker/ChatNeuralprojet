@@ -23,8 +23,8 @@ export const useAssistant = () => {
 
     const getWelcomeMessage = () => {
       const messages = {
-        clark: "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?",
-        ragnaria: "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+        clark: "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?",
+        ragnaria: "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
       };
       return messages[currentAssistant];
     };
