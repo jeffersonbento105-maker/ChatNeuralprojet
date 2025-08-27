@@ -242,45 +242,7 @@ Be friendly, clear and instructive. Include tips when relevant.`;
     }
   });
 
-  // Quick tips endpoint
-  app.get("/api/tips", (req, res) => {
-    const { context, assistant, messageCount } = req.query;
-    
-    const tips = [
-      {
-        id: 'welcome',
-        title: 'Welcome to ChatNeural!',
-        content: 'Try asking Clark for analytical help or switch to Ragnaria for creative assistance. You can also generate recipes and emails using the buttons on the right.',
-        context: 'first_visit'
-      },
-      {
-        id: 'clark_tips',
-        title: 'Clark - Analytical Assistant',
-        content: 'Ask Clark for step-by-step explanations, data analysis, structured solutions, or educational content.',
-        context: 'clark'
-      },
-      {
-        id: 'ragnaria_tips',
-        title: 'Ragnaria - Creative Assistant', 
-        content: 'Ask Ragnaria for brainstorming, creative writing, innovative ideas, or fun conversations.',
-        context: 'ragnaria'
-      },
-      {
-        id: 'recipe_tips',
-        title: 'Recipe Generation',
-        content: 'Ask for any cake or dessert recipe and get beautifully formatted instructions.',
-        context: 'features'
-      }
-    ];
-    
-    let contextualTips = tips;
-    
-    if (context === 'assistant' && assistant) {
-      contextualTips = tips.filter(tip => tip.context === assistant || tip.context === 'features');
-    }
-    
-    res.json({ tips: contextualTips });
-  });
+
 
   // Health check endpoint  
   app.get("/api/health", (req, res) => {
