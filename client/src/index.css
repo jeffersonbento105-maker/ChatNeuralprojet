@@ -141,8 +141,11 @@ body {
 
 /* Promo buttons positioning */
 .promo-buttons-fixed {
-  position: fixed;
-  right: 20px;
-  top: 80px;
-  z-index: 40;
+  position: fixed !important;
+  right: 20px !important;
+  top: 80px !important;
+  z-index: 40 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
 }

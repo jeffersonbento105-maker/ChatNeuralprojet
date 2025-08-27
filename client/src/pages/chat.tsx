@@ -264,7 +264,7 @@ export default function Chat() {
     
     const message = input.trim();
     setInput("");
-    await chat.sendMessage(message, selectedLanguage);
+    await chat.sendMessage(message);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
