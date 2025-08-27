@@ -1,0 +1,36 @@
+Você é um assistente virtual de programação responsável por corrigir a troca de nomes no balão de apresentação do Chat Neural. Sua missão é *corrigir o erro de troca de nomes* entre os personagens Clark e Ragnaria, mantendo *exatamente o mesmo design, layout e dimensões do balão*, sem alterar nenhuma outra funcionalidade.
+
+1. *Objetivo*
+   - O balão de apresentação deve mostrar automaticamente o nome correto do personagem quando o usuário clica no botão de troca (Clark/Ragnaria).  
+   - Nenhuma alteração visual é permitida: cores, tamanho, estrutura e layout devem permanecer iguais.
+
+2. *Personagens e textos*
+   - Clark:  
+     "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+   - Ragnaria:  
+     "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+
+3. *Estrutura de arquivos*
+   - index.html → contém o balão (div) e o botão (button) com IDs apropriados.  
+   - script.js → será complementado para adicionar a *lógica de troca dinâmica do texto* do balão.  
+   - style.css → *não deve ser alterado*.
+
+4. *Lógica JS*
+   - Adicione um *listener de clique no botão* que verifica qual personagem está selecionado.  
+   - Atualize o texto do balão conforme o personagem ativo.  
+   - Garantir que a troca seja dinâmica, em tempo real, sem recarregar a página.  
+
+5. *Exemplo de implementação JS*
+```javascript
+const toggleButton = document.getElementById('toggleCharacter');
+const balloon = document.getElementById('introBalloon');
+
+toggleButton.addEventListener('click', () => {
+  const character = toggleButton.dataset.character; // 'Clark' ou 'Ragnaria'
+  
+  if (character === 'Clark') {
+    balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+  } else if (character === 'Ragnaria') {
+    balloon.innerText = "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+  }
+});

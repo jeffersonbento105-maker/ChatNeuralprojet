@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { useChat } from "@/hooks/use-chat";
-import { useAssistant } from "@/hooks/use-assistant";
 import PromoButtons from "@/components/PromoButtons";
 import AIControls from "@/components/AIControls";
 import AssistantToggle from "@/components/AssistantToggle";
 
 export default function Chat() {
   const chat = useChat();
-  const { getWelcomeMessage, currentAssistant } = useAssistant();
   const [input, setInput] = useState("");
+  const [currentAssistant, setCurrentAssistant] = useState<'clark' | 'ragnaria'>('clark');
 
   useEffect(() => {
     document.title = "ChatNeural";
@@ -280,7 +279,7 @@ export default function Chat() {
         <div className="chatneural-header-content flex items-center justify-center">
           <div className="flex items-center">
             <AIControls />
-            <AssistantToggle />
+            <AssistantToggle onToggle={setCurrentAssistant} currentAssistant={currentAssistant} />
             <h1 className="chatneural-title">ChatNeural</h1>
           </div>
         </div>
@@ -295,7 +294,10 @@ export default function Chat() {
           {chat.messages.length === 0 ? (
             <div key={currentAssistant} className="chatneural-message assistant">
               <div className="chatneural-bubble assistant">
-                {getWelcomeMessage()}
+                {currentAssistant === 'clark' 
+                  ? "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+                  : "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+                }
               </div>
             </div>
           ) : (

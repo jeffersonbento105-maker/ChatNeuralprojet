@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useAssistant } from '@/hooks/use-assistant';
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -28,9 +27,18 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content }) => {
   );
 };
 
-const AssistantToggle: React.FC = () => {
-  const { currentAssistant, toggleAssistant } = useAssistant();
+interface AssistantToggleProps {
+  onToggle: (assistant: 'clark' | 'ragnaria') => void;
+  currentAssistant: 'clark' | 'ragnaria';
+}
+
+const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssistant }) => {
   const [language, setLanguage] = useState<'pt' | 'en' | 'es'>('en');
+
+  const toggleAssistant = () => {
+    const newAssistant = currentAssistant === 'clark' ? 'ragnaria' : 'clark';
+    onToggle(newAssistant);
+  };
 
   useEffect(() => {
     // Detect user language from browser
