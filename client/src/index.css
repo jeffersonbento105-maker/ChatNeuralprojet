@@ -32,6 +32,14 @@
   list-style-type: decimal;
 }
 
+/* Fixed position for promo buttons */
+.promo-buttons-fixed {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
 * {
   margin: 0;
   padding: 0;

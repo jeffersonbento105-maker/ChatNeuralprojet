@@ -64,23 +64,27 @@ const PromoButtons: React.FC = () => {
   };
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="promo-buttons-fixed flex gap-3 items-center">
       {/* Email Button */}
       <Tooltip content={tooltips.email[language]}>
         <button 
-          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm rounded-md shadow-md transition-colors duration-200 flex items-center justify-center"
+          onClick={() => window.open('/email', '_blank')}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
           data-testid="promo-email-button"
         >
+          <span className="text-sm font-medium">Email</span>
           <span className="text-base">📧</span>
         </button>
       </Tooltip>
 
-      {/* Cake Button */}
+      {/* Recipe Button */}
       <Tooltip content={tooltips.cake[language]}>
         <button 
-          className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 text-sm rounded-md shadow-md transition-colors duration-200 flex items-center justify-center"
+          onClick={() => window.open('/recipe-viewer', '_blank')}
+          className="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
           data-testid="promo-cake-button"
         >
+          <span className="text-sm font-medium">Recipe</span>
           <span className="text-base">🍰</span>
         </button>
       </Tooltip>

@@ -16,13 +16,17 @@ O componente `PromoButtons` foi criado em `client/src/components/PromoButtons.ts
 
 #### 1. Botão de Email
 - **Ícone**: 📧 (emoji de email)
+- **Texto**: "Email" em inglês à esquerda do ícone
 - **Cor**: Azul (`bg-blue-500` com hover `bg-blue-600`)
-- **Funcionalidade**: Apenas visual, sem ação
+- **Forma**: Pill/oval com bordas totalmente arredondadas (`rounded-full`)
+- **Funcionalidade**: Abre janela de geração de email em nova aba
 
-#### 2. Botão de Bolo
+#### 2. Botão de Recipe
 - **Ícone**: 🍰 (emoji de fatia de bolo)
-- **Cor**: Laranja (`bg-orange-500` com hover `bg-orange-600`)
-- **Funcionalidade**: Apenas visual, sem ação
+- **Texto**: "Recipe" em inglês à esquerda do ícone
+- **Cor**: Roxo (`bg-purple-500` com hover `bg-purple-600`)
+- **Forma**: Pill/oval com bordas totalmente arredondadas (`rounded-full`)
+- **Funcionalidade**: Abre visualizador de receitas em nova aba
 
 ### Tooltips Multilíngues
 
