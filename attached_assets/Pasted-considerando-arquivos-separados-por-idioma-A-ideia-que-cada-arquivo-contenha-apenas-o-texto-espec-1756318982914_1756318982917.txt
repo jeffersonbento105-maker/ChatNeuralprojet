@@ -1,0 +1,132 @@
+considerando arquivos separados por idioma. A ideia é que cada arquivo contenha apenas o texto específico do idioma e que o sistema carregue o idioma correto de acordo com a escolha do usuário no botão “Linguagem”.
+
+Vou detalhar a estrutura completa:
+
+
+---
+
+1️⃣ Estrutura de arquivos
+
+Você terá uma pasta chamada languages com um arquivo para cada idioma:
+
+/languages
+   ├─ pt.js        (Português)
+   ├─ en.js        (Inglês)
+   ├─ es.js        (Espanhol)
+   ├─ de.js        (Alemão)
+   └─ zh.js        (Chinês Tradicional)
+
+Cada arquivo exportará um objeto com todos os textos que a IA vai usar.
+
+
+---
+
+2️⃣ Exemplo de arquivo: pt.js (Português)
+
+export const pt = {
+  greeting: "Olá! Como posso ajudá-lo hoje?",
+  ingredients: "Ingredientes",
+  preparation: "Modo de Preparo",
+  topping: "Cobertura",
+  recipeButton: "Receitas",
+  emailButton: "Email",
+  tooltipRecipes: "Clique para ver várias receitas",
+  tooltipEmail: "Clique para enviar um email",
+  languageLabel: "Linguagem",
+  error: "Ops! Algo deu errado, tente novamente."
+};
+
+
+---
+
+3️⃣ Exemplo de arquivo: en.js (Inglês)
+
+export const en = {
+  greeting: "Hello! How can I help you today?",
+  ingredients: "Ingredients",
+  preparation: "Preparation",
+  topping: "Topping",
+  recipeButton: "Recipes",
+  emailButton: "Email",
+  tooltipRecipes: "Click to see various recipes",
+  tooltipEmail: "Click to send an email",
+  languageLabel: "Language",
+  error: "Oops! Something went wrong, please try again."
+};
+
+> O mesmo padrão se aplica para es.js, de.js e zh.js, só alterando os textos.
+
+
+
+
+---
+
+4️⃣ Código para carregar o idioma selecionado
+
+No seu script principal (app.js ou main.js):
+
+import { pt } from './languages/pt.js';
+import { en } from './languages/en.js';
+import { es } from './languages/es.js';
+import { de } from './languages/de.js';
+import { zh } from './languages/zh.js';
+
+let currentLanguage = pt; // padrão: português
+
+// Função para trocar idioma
+function setLanguage(lang) {
+  switch(lang) {
+    case 'pt': currentLanguage = pt; break;
+    case 'en': currentLanguage = en; break;
+    case 'es': currentLanguage = es; break;
+    case 'de': currentLanguage = de; break;
+    case 'zh': currentLanguage = zh; break;
+    default: currentLanguage = pt;
+  }
+  updateUI();
+}
+
+// Atualiza textos na interface
+function updateUI() {
+  document.getElementById('recipeBtn').innerText = currentLanguage.recipeButton;
+  document.getElementById('emailBtn').innerText = currentLanguage.emailButton;
+  document.getElementById('languageLabel').innerText = currentLanguage.languageLabel;
+  // ...atualizar outros textos conforme necessário
+}
+
+
+---
+
+5️⃣ HTML do botão de idioma
+
+<div id="languageSelector">
+  <label id="languageLabel">Linguagem</label>
+  <select onchange="setLanguage(this.value)">
+    <option value="pt">Português</option>
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="de">Deutsch</option>
+    <option value="zh">中文</option>
+  </select>
+</div>
+
+> Este botão ficará fixo à direita da tela, abaixo dos botões de receitas e email.
+
+
+
+
+---
+
+6️⃣ Prompt da IA
+
+No prompt do Chat Neural, você pode indicar algo assim:
+
+Sempre use o idioma atual carregado pelo sistema. 
+Organize as respostas com seções claras:
+- Ingredientes
+- Modo de Preparo
+- Cobertura
+
+Use cores suaves para diferenciar cada seção.
+Use as palavras do arquivo de idioma correspondente.
+Sempre mantenha a estrutura organizada e numeração correta, independentemente do idioma.
