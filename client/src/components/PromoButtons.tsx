@@ -36,7 +36,7 @@ const PromoButtons: React.FC = () => {
   };
 
   return (
-    <div className="promo-buttons-fixed flex gap-3 items-center">
+    <div className="promo-buttons-fixed flex flex-col gap-2 items-end">
       {/* Email Button */}
       <Tooltip content={tooltips.email}>
         <button 

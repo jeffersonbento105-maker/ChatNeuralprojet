@@ -35,7 +35,7 @@ export default function LanguageSelector({ onLanguageChange }: LanguageSelectorP
   }, []);
 
   return (
-    <div className="language-selector fixed right-5 top-[140px] z-50">
+    <div className="language-selector fixed right-5 top-[180px] z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 shadow-sm"
