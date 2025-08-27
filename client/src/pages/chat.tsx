@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useChat } from "@/hooks/use-chat";
+import { useAssistant } from "@/hooks/use-assistant";
 import PromoButtons from "@/components/PromoButtons";
 import AIControls from "@/components/AIControls";
 import AssistantToggle from "@/components/AssistantToggle";
 
 export default function Chat() {
   const chat = useChat();
+  const { getWelcomeMessage } = useAssistant();
   const [input, setInput] = useState("");
 
   useEffect(() => {
@@ -293,7 +295,7 @@ export default function Chat() {
           {chat.messages.length === 0 ? (
             <div className="chatneural-message assistant">
               <div className="chatneural-bubble assistant">
-                Olá! Sou o ChatNeural. Como posso ajudá-lo hoje?
+                {getWelcomeMessage()}
               </div>
             </div>
           ) : (

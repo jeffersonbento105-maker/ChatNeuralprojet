@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAssistant } from '@/hooks/use-assistant';
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -28,7 +29,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content }) => {
 };
 
 const AssistantToggle: React.FC = () => {
-  const [currentAssistant, setCurrentAssistant] = useState<'clark' | 'ragnaria'>('clark');
+  const { currentAssistant, toggleAssistant } = useAssistant();
   const [language, setLanguage] = useState<'pt' | 'en' | 'es'>('en');
 
   useEffect(() => {
@@ -57,9 +58,7 @@ const AssistantToggle: React.FC = () => {
     }
   };
 
-  const toggleAssistant = () => {
-    setCurrentAssistant(prev => prev === 'clark' ? 'ragnaria' : 'clark');
-  };
+
 
   return (
     <div className="mr-4">
