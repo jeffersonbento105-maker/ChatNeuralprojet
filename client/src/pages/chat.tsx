@@ -288,24 +288,30 @@ export default function Chat() {
         const newButton = toggleButton.cloneNode(true) as HTMLElement;
         toggleButton.parentNode?.replaceChild(newButton, toggleButton);
 
-        // Sistema de troca entre Clark e Ragnaria
-        newButton.addEventListener('click', () => {
+        // Sistema de troca entre Clark e Ragnaria com debug
+        newButton.addEventListener('click', (e) => {
+          e.preventDefault();
           const balloon = document.getElementById('introBalloon');
-          const button = newButton as HTMLButtonElement;
+          const button = document.getElementById('toggleCharacter') as HTMLButtonElement;
           
           if (balloon && button) {
-            if(button.dataset.character === 'Clark'){
+            const currentCharacter = button.dataset.character || 'Clark';
+            console.log('Clique detectado, personagem atual:', currentCharacter);
+            
+            if(currentCharacter === 'Clark'){
               // Troca para Ragnaria
               balloon.innerText = "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-              button.dataset.character = 'Ragnaria';
+              button.setAttribute('data-character', 'Ragnaria');
               button.innerText = "Ragnaria";
               button.className = "px-3 py-1 text-xs rounded-full font-medium transition-all duration-200 bg-purple-400 text-white hover:bg-purple-500";
+              console.log('Mudou para Ragnaria');
             } else {
               // Troca para Clark
               balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-              button.dataset.character = 'Clark';
+              button.setAttribute('data-character', 'Clark');
               button.innerText = "Clark";
               button.className = "px-3 py-1 text-xs rounded-full font-medium transition-all duration-200 bg-gray-200 text-gray-800 hover:bg-gray-300";
+              console.log('Mudou para Clark');
             }
           }
         });
