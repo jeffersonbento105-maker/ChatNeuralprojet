@@ -7,7 +7,7 @@ import AssistantToggle from "@/components/AssistantToggle";
 
 export default function Chat() {
   const chat = useChat();
-  const { getWelcomeMessage } = useAssistant();
+  const { getWelcomeMessage, currentAssistant } = useAssistant();
   const [input, setInput] = useState("");
 
   useEffect(() => {
@@ -293,7 +293,7 @@ export default function Chat() {
       <main className="chatneural-main">
         <div className="chatneural-messages">
           {chat.messages.length === 0 ? (
-            <div className="chatneural-message assistant">
+            <div key={currentAssistant} className="chatneural-message assistant">
               <div className="chatneural-bubble assistant">
                 {getWelcomeMessage()}
               </div>
