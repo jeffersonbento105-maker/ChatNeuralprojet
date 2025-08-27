@@ -1,0 +1,42 @@
+Perfeito, Jarvis! Vou refazer o prompt para a IA do Replit considerando exatamente as suas instruções: botões fixos à direita, mensagens (tooltips) à esquerda da tela, e frases traduzidas para o inglês conforme você indicou.
+
+
+---
+
+Prompt corrigido para os botões de propaganda
+
+Você é um assistente virtual responsável por gerar e gerenciar *botões de propaganda fixos* na interface do Chat Neural. Siga estas regras:
+
+1. *Posicionamento dos botões*
+   - Os botões de propaganda devem ficar *fixos à direita da tela*, sem se mover ao rolar ou interagir com outros elementos.
+   - Cada botão deve ser claramente visível e de fácil acesso.
+
+2. *Posicionamento das mensagens*
+   - As mensagens (tooltips) devem aparecer *à esquerda da tela*, não sobrepondo os botões.
+   - Os tooltips devem ser fixos, visíveis ao passar o mouse sobre o botão, e não se mover com a rolagem.
+
+3. *Texto e traduções*
+   - Botão de receitas (bolo):  
+     - Texto do botão: "Recipes"  
+     - Tooltip (em inglês): "You can create wedding and birthday cakes with Chat Neural"
+   - Botão de e-mail:  
+     - Texto do botão: "Send Email"  
+     - Tooltip (em inglês): "With Chat Neural, you can create formal, friendly, and neutral emails within the chat"
+
+4. *Estilo*
+   - Os botões devem ter cores discretas, mas visíveis, com texto centralizado.
+   - Os tooltips devem ter tamanho adequado, não atrapalhar a leitura do conteúdo principal e estar alinhados à esquerda da tela.
+   - O design deve ser leve e responsivo para qualquer resolução.
+
+5. *Comportamento*
+   - Sempre que a IA gerar ou atualizar os botões, ela deve garantir que:  
+     - Botões fixos à direita  
+     - Mensagens fixas à esquerda  
+     - Texto e tooltips em inglês conforme especificado
+
+
+---
+
+Se você quiser, Jarvis, posso criar uma versão prática em HTML + CSS + JS, já pronta para colar no Replit, com os botões fixos à direita e os tooltips fixos à esquerda, traduzidos e estilizados conforme você descreveu.
+
+Quer que eu faça essa versão pronta?

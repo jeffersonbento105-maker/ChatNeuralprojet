@@ -17,10 +17,10 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content, position = 'left' 
     >
       {children}
       {isVisible && (
-        <div className="absolute top-full mt-2 left-0 z-50 max-w-xs">
-          <div className="bg-gray-800 text-white text-sm rounded-lg px-3 py-2 shadow-xl">
+        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 max-w-xs">
+          <div className="bg-gray-800 text-white text-sm rounded-lg px-4 py-3 shadow-xl">
             {content}
-            <div className="absolute -top-1 left-4 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-800"></div>
+            <div className="absolute right-[-8px] top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-8 border-r-0 border-t-4 border-b-4 border-transparent border-l-gray-800"></div>
           </div>
         </div>
       )}
@@ -31,8 +31,8 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content, position = 'left' 
 const PromoButtons: React.FC = () => {
 
   const tooltips = {
-    email: "With ChatNeural, you can create formal, friendly, and neutral emails within the chat",
-    recipes: "You can create wedding and birthday cakes with ChatNeural"
+    email: "With Chat Neural, you can create formal, friendly, and neutral emails within the chat",
+    recipes: "You can create wedding and birthday cakes with Chat Neural"
   };
 
   return (
