@@ -6,11 +6,7 @@ interface AssistantToggleProps {
 }
 
 const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssistant }) => {
-  const toggleAssistant = () => {
-    const newAssistant = currentAssistant === 'clark' ? 'ragnaria' : 'clark';
-    onToggle(newAssistant);
-  };
-
+  // Não usar onClick do React, deixar o JavaScript puro controlar
   return (
     <div className="mr-4">
       <button
