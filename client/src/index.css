@@ -119,3 +119,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
+
+/* Estilos HTML integrados para sistema dinâmico */
+#introBalloon {
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding: 15px;
+  max-width: 400px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+#toggleCharacter {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}

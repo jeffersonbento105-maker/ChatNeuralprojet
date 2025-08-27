@@ -272,17 +272,46 @@ export default function Chat() {
     }
   };
 
-  // Sistema de troca dinâmica do balão
+  // Sistema HTML + CSS + JS integrado para troca dinâmica
   useEffect(() => {
-    const balloon = document.getElementById('introBalloon');
-    if (balloon) {
-      if (currentAssistant === 'clark') {
-        balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-      } else {
-        balloon.innerText = "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+    const setupDynamicSystem = () => {
+      const toggleButton = document.getElementById('toggleCharacter');
+      const balloon = document.getElementById('introBalloon');
+
+      if (toggleButton && balloon) {
+        // Define estado inicial
+        toggleButton.setAttribute('data-character', 'Clark');
+        balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+
+        // Remove listeners anteriores
+        const newButton = toggleButton.cloneNode(true) as HTMLElement;
+        toggleButton.parentNode?.replaceChild(newButton, toggleButton);
+
+        // Implementa o JavaScript exato do HTML fornecido
+        newButton.addEventListener('click', () => {
+          const balloon = document.getElementById('introBalloon');
+          const button = document.getElementById('toggleCharacter') as HTMLButtonElement;
+          
+          if (balloon && button) {
+            if(button.dataset.character === 'Clark'){
+              // Troca para Ragnaria
+              balloon.innerText = "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+              button.dataset.character = 'Ragnaria';
+              button.innerText = "Trocar para Clark";
+            } else {
+              // Troca para Clark
+              balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+              button.dataset.character = 'Clark';
+              button.innerText = "Trocar para Ragnaria";
+            }
+          }
+        });
       }
-    }
-  }, [currentAssistant]);
+    };
+
+    const timer = setTimeout(setupDynamicSystem, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="chatneural-app relative min-h-screen">

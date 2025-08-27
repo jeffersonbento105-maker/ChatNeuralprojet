@@ -15,16 +15,11 @@ const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssi
     <div className="mr-4">
       <button
         id="toggleCharacter"
-        onClick={toggleAssistant}
-        className={`px-3 py-1 text-xs rounded-full font-medium transition-all duration-200 ${
-          currentAssistant === 'clark'
-            ? 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            : 'bg-purple-400 text-white hover:bg-purple-500'
-        }`}
+        className="inline-block mx-5 py-2 px-5 text-sm cursor-pointer bg-gray-200 text-gray-800 hover:bg-gray-300 rounded transition-all duration-200"
+        data-character="Clark"
         data-testid="assistant-toggle"
-        data-character={currentAssistant}
       >
-        {currentAssistant === 'clark' ? 'Clark' : 'Ragnaria'}
+        Trocar para Ragnaria
       </button>
     </div>
   );
