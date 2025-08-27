@@ -36,13 +36,14 @@ const PromoButtons: React.FC = () => {
   };
 
   return (
-    <div className="promo-buttons-fixed flex flex-col gap-2 items-end">
+    <div className="promo-buttons-fixed" style={{ position: 'fixed', right: '20px', top: '80px', zIndex: 999 }}>
       {/* Email Button */}
       <Tooltip content={tooltips.email}>
         <button 
           onClick={() => window.open('/email', '_blank')}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2 mb-3"
           data-testid="button-email"
+          style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
         >
           <span className="text-sm font-medium">Send Email</span>
           <span className="text-base">📧</span>
@@ -53,8 +54,9 @@ const PromoButtons: React.FC = () => {
       <Tooltip content={tooltips.recipes}>
         <button 
           onClick={() => window.open('/recipe-viewer', '_blank')}
-          className="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
+          className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
           data-testid="button-recipes"
+          style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
         >
           <span className="text-sm font-medium">Recipes</span>
           <span className="text-base">🍰</span>
