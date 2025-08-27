@@ -4,6 +4,7 @@ import PromoButtons from "@/components/PromoButtons";
 import AIControls from "@/components/AIControls";
 import AssistantToggle from "@/components/AssistantToggle";
 import LanguageSelector from "@/components/LanguageSelector";
+import QuickTips from "@/components/QuickTips";
 
 export default function Chat() {
   const chat = useChat();
@@ -342,6 +343,12 @@ export default function Chat() {
       
       {/* Language Selector */}
       <LanguageSelector onLanguageChange={setSelectedLanguage} />
+      
+      {/* Quick Tips */}
+      <QuickTips 
+        currentAssistant={currentAssistant} 
+        messageCount={chat.messages.length} 
+      />
 
       {/* Main chat area */}
       <main className="chatneural-main">
