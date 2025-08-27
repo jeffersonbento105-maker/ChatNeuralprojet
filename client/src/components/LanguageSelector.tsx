@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
-import { pt } from '../languages/pt.js';
-import { en } from '../languages/en.js';
-import { es } from '../languages/es.js';
-import { de } from '../languages/de.js';
-import { zh } from '../languages/zh.js';
 
 interface LanguageSelectorProps {
   onLanguageChange: (lang: string) => void;
 }
 
 const languages = {
-  pt: { label: '🇧🇷 PT', data: pt },
-  en: { label: '🇺🇸 EN', data: en },
-  es: { label: '🇪🇸 ES', data: es },
-  de: { label: '🇩🇪 DE', data: de },
-  zh: { label: '🇨🇳 ZH', data: zh }
+  pt: { label: '🇧🇷 PT' },
+  en: { label: '🇺🇸 EN' },
+  es: { label: '🇪🇸 ES' },
+  de: { label: '🇩🇪 DE' },
+  zh: { label: '🇨🇳 ZH' }
 };
 
 export default function LanguageSelector({ onLanguageChange }: LanguageSelectorProps) {
@@ -25,18 +20,6 @@ export default function LanguageSelector({ onLanguageChange }: LanguageSelectorP
     setCurrentLang(langCode);
     onLanguageChange(langCode);
     setIsOpen(false);
-    
-    // Update UI texts
-    updateUITexts(languages[langCode as keyof typeof languages].data);
-  };
-
-  const updateUITexts = (langData: any) => {
-    // Update button texts
-    const recipeBtn = document.querySelector('[data-testid="button-recipes"]') as HTMLElement;
-    const emailBtn = document.querySelector('[data-testid="button-email"]') as HTMLElement;
-    
-    if (recipeBtn) recipeBtn.textContent = langData.recipeButton;
-    if (emailBtn) emailBtn.textContent = langData.emailButton;
   };
 
   useEffect(() => {
@@ -52,7 +35,7 @@ export default function LanguageSelector({ onLanguageChange }: LanguageSelectorP
   }, []);
 
   return (
-    <div className="language-selector fixed right-4 top-24 z-50">
+    <div className="language-selector fixed right-5 top-[140px] z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 shadow-sm"

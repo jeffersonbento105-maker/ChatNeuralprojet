@@ -138,3 +138,11 @@ body {
   font-size: 14px;
   cursor: pointer;
 }
+
+/* Language selector positioning below Recipes button */
+.promo-buttons-fixed {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  z-index: 40;
+}
