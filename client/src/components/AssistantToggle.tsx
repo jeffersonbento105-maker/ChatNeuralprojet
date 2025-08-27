@@ -10,23 +10,13 @@ const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssi
     const newAssistant = currentAssistant === 'clark' ? 'ragnaria' : 'clark';
     onToggle(newAssistant);
     
-    // JavaScript puro para troca dinâmica instantânea
-    const toggleButton = document.getElementById('toggleCharacter');
-    const balloon = document.getElementById('introBalloon');
-    
-    if (toggleButton && balloon) {
-      let current = toggleButton.getAttribute('data-character');
-      
-      if(current === 'clark'){
-        // Troca para Ragnaria
-        balloon.innerText = "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-        toggleButton.setAttribute('data-character', 'ragnaria');
-      } else {
-        // Troca para Clark
-        balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
-        toggleButton.setAttribute('data-character', 'clark');
+    // Atualiza o data-character e dispara o clique para ativar o JavaScript puro
+    setTimeout(() => {
+      const toggleButton = document.getElementById('toggleCharacter');
+      if (toggleButton) {
+        toggleButton.click();
       }
-    }
+    }, 10);
   };
 
   return (
