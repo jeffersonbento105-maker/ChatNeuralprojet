@@ -275,15 +275,17 @@ export default function Chat() {
     <div className="chatneural-app relative min-h-screen">
       {/* Header */}
       <header className="chatneural-header">
-        <div className="chatneural-header-content flex items-center justify-between">
+        <div className="chatneural-header-content flex items-center justify-center">
           <div className="flex items-center">
             <AIControls />
             <AssistantToggle />
             <h1 className="chatneural-title">ChatNeural</h1>
           </div>
-          <PromoButtons />
         </div>
       </header>
+
+      {/* Fixed Promo Buttons */}
+      <PromoButtons />
 
       {/* Main chat area */}
       <main className="chatneural-main">
