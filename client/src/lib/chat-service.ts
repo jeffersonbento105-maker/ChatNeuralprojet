@@ -4,6 +4,7 @@ export interface ChatRequest {
   assistant: 'clark' | 'ragnaria';
   message: string;
   history: Array<{ role: string; content: string }>;
+  language?: string;
 }
 
 export interface EmailRequest {

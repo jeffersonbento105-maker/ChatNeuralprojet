@@ -3,11 +3,13 @@ import { useChat } from "@/hooks/use-chat";
 import PromoButtons from "@/components/PromoButtons";
 import AIControls from "@/components/AIControls";
 import AssistantToggle from "@/components/AssistantToggle";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Chat() {
   const chat = useChat();
   const [input, setInput] = useState("");
   const [currentAssistant, setCurrentAssistant] = useState<'clark' | 'ragnaria'>('clark');
+  const [chatLanguage, setChatLanguage] = useState('pt');
 
   useEffect(() => {
     document.title = "ChatNeural";
@@ -337,6 +339,9 @@ export default function Chat() {
 
       {/* Fixed Promo Buttons */}
       <PromoButtons />
+      
+      {/* Language Selector */}
+      <LanguageSelector onLanguageChange={setChatLanguage} />
 
       {/* Main chat area */}
       <main className="chatneural-main">

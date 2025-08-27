@@ -40,11 +40,12 @@ export function useChat(): ChatHook {
   ]);
   const { toast } = useToast();
 
-  const sendMessage = useCallback(async (content: string) => {
+  const sendMessage = useCallback(async (content: string, chatLanguage?: string) => {
     if (isTyping) return;
 
-    // Detect language and update state
+    // Use provided language or detect from content
     const detectedLang = detectLanguage(content);
+    const currentLang = chatLanguage || (detectedLang ? 'pt' : 'en');
     setLanguage(detectedLang);
 
     // Add user message
@@ -60,7 +61,8 @@ export function useChat(): ChatHook {
       const reply = await sendChatMessage({
         assistant: currentAssistant,
         message: content,
-        history
+        history,
+        language: currentLang
       });
 
       // Add assistant response
