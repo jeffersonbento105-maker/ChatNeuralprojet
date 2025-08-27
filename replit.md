@@ -1,6 +1,6 @@
 # Overview
 
-ChatNeural is a modern AI assistant platform built with Node.js, Express, React, and TypeScript. The application provides users with two distinct AI assistants - Clark (analytical) and Ragnaria (creative) - each with unique personalities and communication styles. The platform features a modern chat interface with bubble-style conversations, automatic language detection (Portuguese/English), and a dedicated email generation tool with multiple tone options. The application uses a clean, modern design with centralized layout and is fully optimized for external iframe embedding with comprehensive CORS support.
+ChatNeural is a modern AI assistant platform built with Node.js, Express, React, and TypeScript. The application provides users with two distinct AI assistants - Clark (analytical) and Ragnaria (creative) - each with unique personalities and communication styles. The platform features a modern chat interface with bubble-style conversations, automatic language detection (Portuguese/English), and a dedicated email generation tool with multiple tone options. The application includes fixed promotional buttons on the right side with contextual tooltips and multi-language support. The application uses a clean, modern design with centralized layout and is fully optimized for external iframe embedding with comprehensive CORS support.
 
 # User Preferences
 
@@ -57,6 +57,13 @@ Dedicated email composition tool with:
 - **Lucide React**: Icon library for consistent iconography
 - **React Hook Form**: Form handling with validation
 - **TanStack Query**: Server state management and caching
+
+## Promotional Buttons System
+- **Fixed positioning**: Right side of screen (right: 20px, top: 80px)
+- **Send Email Button**: Blue button with English tooltip "With Chat Neural, you can create formal, friendly, and neutral emails within the chat"
+- **Recipes Button**: Purple button with English tooltip "You can create wedding and birthday cakes with Chat Neural"
+- **Tooltip positioning**: Fixed to left side of screen during hover
+- **Multi-language selector**: Small dropdown below main buttons with flag indicators
 
 ## Development & Build Tools
 - **Vite**: Fast build tool and development server
