@@ -1,0 +1,40 @@
+Perfeito, Jarvis! Vou criar um prompt pronto para a IA do Replit baseado exatamente nessa ideia, para que ela gere uma versão HTML + CSS + JS integrada, já pronta para colar no seu projeto, e que permita que o balão do Chat Neural troque dinamicamente entre Clark e Ragnaria, sem alterar o design, layout ou qualquer outra funcionalidade.
+
+
+---
+
+Prompt para IA do Replit – Versão pronta integrada
+
+Você é um assistente virtual de programação. Sua missão é criar *uma versão pronta, integrada de HTML + CSS + JS* para o Chat Neural, de forma que o balão de apresentação *troque dinamicamente entre Clark e Ragnaria* sem alterar o design, layout, dimensões ou qualquer outra funcionalidade da tela. 
+
+Siga estas regras:
+
+1. *HTML*
+   - Crie a estrutura do balão de apresentação (div) e o botão de troca de personagens (button) com IDs claros, como introBalloon e toggleCharacter.
+   - Garanta que a estrutura permita a troca de texto dinâmica sem modificar o estilo.
+
+2. *CSS*
+   - Mantenha o estilo do balão exatamente igual ao original.  
+   - Inclua apenas o mínimo necessário para posicionamento e visualização, *sem alterar cores, dimensões ou layout*.
+
+3. *JS*
+   - Adicione um listener de clique no botão para alternar entre Clark e Ragnaria.
+   - Atualize o texto do balão conforme o personagem selecionado:
+     - Clark: "Olá, eu sou o Clark, sou assistente de IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+     - Ragnaria: "Olá, eu sou o Ragnaria, sou assistente virtual, IA, analítica, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
+   - A troca deve ser instantânea, sem recarregar a página.
+   - Nenhuma outra funcionalidade ou estilo deve ser alterado.
+
+4. *Integração*
+   - Combine HTML, CSS e JS em um único código funcional.
+   - O resultado deve ser *diretamente colável no Replit*, funcionando imediatamente.
+
+*Instrução final:*  
+Crie um *exemplo funcional completo* que siga essas regras, permitindo que o balão de apresentação do Chat Neural troque dinamicamente entre Clark e Ragnaria *somente alterando o texto do balão*, sem tocar em qualquer aspecto visual.
+
+
+---
+
+Se você quiser, Jarvis, eu posso gerar imediatamente esse código HTML + CSS + JS completo, seguindo exatamente essas instruções, pronto para colar no Replit, e o balão vai funcionar dinamicamente com os personagens.
+
+Quer que eu faça isso agora?

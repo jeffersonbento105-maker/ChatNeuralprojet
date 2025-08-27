@@ -272,6 +272,42 @@ export default function Chat() {
     }
   };
 
+  // JavaScript puro para garantir troca dinâmica do balão
+  useEffect(() => {
+    const setupDynamicToggle = () => {
+      const toggleButton = document.getElementById('toggleCharacter');
+      const balloon = document.getElementById('introBalloon');
+      
+      if (toggleButton && balloon) {
+        const updateBalloon = () => {
+          const character = toggleButton.getAttribute('data-character');
+          
+          if (character === 'clark') {
+            balloon.innerText = "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+          } else if (character === 'ragnaria') {
+            balloon.innerText = "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?";
+          }
+        };
+        
+        // Executar uma vez para definir o estado inicial
+        updateBalloon();
+        
+        // Observer para detectar mudanças no data-character
+        const observer = new MutationObserver(updateBalloon);
+        observer.observe(toggleButton, { 
+          attributes: true, 
+          attributeFilter: ['data-character'] 
+        });
+        
+        return () => observer.disconnect();
+      }
+    };
+    
+    // Executar após um pequeno delay para garantir que os elementos existam
+    const timer = setTimeout(setupDynamicToggle, 100);
+    return () => clearTimeout(timer);
+  }, [currentAssistant]);
+
   return (
     <div className="chatneural-app relative min-h-screen">
       {/* Header */}
@@ -293,7 +329,7 @@ export default function Chat() {
         <div className="chatneural-messages">
           {chat.messages.length === 0 ? (
             <div key={currentAssistant} className="chatneural-message assistant">
-              <div className="chatneural-bubble assistant">
+              <div id="introBalloon" className="chatneural-bubble assistant">
                 {currentAssistant === 'clark' 
                   ? "Olá, eu sou o Clark, sou assistente de IA, analítico, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"
                   : "Olá, eu sou a Ragnaria, sou assistente virtual, IA, criativa, posso ajudar você com explicações detalhadas, soluções passo a passo e respostas estruturadas, como posso ajudar hoje?"

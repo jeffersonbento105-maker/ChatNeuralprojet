@@ -14,6 +14,7 @@ const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssi
   return (
     <div className="mr-4">
       <button
+        id="toggleCharacter"
         onClick={toggleAssistant}
         className={`px-3 py-1 text-xs rounded-full font-medium transition-all duration-200 ${
           currentAssistant === 'clark'
@@ -21,6 +22,7 @@ const AssistantToggle: React.FC<AssistantToggleProps> = ({ onToggle, currentAssi
             : 'bg-purple-400 text-white hover:bg-purple-500'
         }`}
         data-testid="assistant-toggle"
+        data-character={currentAssistant}
       >
         {currentAssistant === 'clark' ? 'Clark' : 'Ragnaria'}
       </button>
