@@ -63,7 +63,7 @@ const AIControls: React.FC = () => {
 
   return (
     <div className="mr-3">
-      <div className="w-6 h-6 text-purple-600 flex items-center justify-center">
+      <div className="w-4 h-4 text-purple-600 flex items-center justify-center text-sm">
         🧠
       </div>
     </div>
