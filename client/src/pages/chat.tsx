@@ -68,7 +68,7 @@ export default function Chat() {
         max-width: 720px;
         margin: 0 auto;
         width: 100%;
-        padding: 0.25rem 1rem 120px 1rem;
+        padding: 0 1rem 120px 1rem;
       }
       
       .chatneural-messages {
