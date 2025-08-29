@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detox Button</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Container do botão fixo no canto superior direito */
+    .detox-btn-container {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+    }
+
+    /* Botão pequeno e discreto */
+    .detox-btn {
+      background: #4caf50;
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
+      box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .detox-btn:hover {
+      background: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* Ícone detox (SVG simples: copo + canudo + folha) */
+    .detox-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    /* Tooltip (frase em inglês que aparece no hover) */
+    .tooltip {
+      visibility: hidden;
+      width: 230px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 6px;
+      position: absolute;
+      z-index: 1;
+      top: 45px; /* logo abaixo do botão */
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 13px;
+    }
+
+    .detox-btn-container:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="detox-btn-container">
+    <button class="detox-btn">
+      <!-- Ícone detox -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <path d="M20 2h24v6H20zM24 10h16l-2 44H26z" />
+        <path d="M32 14c-8 0-14 6-14 14h28c0-8-6-14-14-14z" />
+        <circle cx="32" cy="28" r="4" />
+      </svg>
+    </button>
+    <div class="tooltip">
+      Ask Chat for a detox recipe for your diet.
+    </div>
+  </div>
+
+</body>
+</html>
