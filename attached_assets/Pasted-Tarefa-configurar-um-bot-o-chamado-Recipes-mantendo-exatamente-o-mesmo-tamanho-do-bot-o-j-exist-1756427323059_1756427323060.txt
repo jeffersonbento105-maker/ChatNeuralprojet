@@ -1,0 +1,96 @@
+Tarefa: configurar um botão chamado "Recipes", mantendo exatamente o mesmo tamanho do botão já existente (não alterar width, height, padding, margin nem font-size).
+Posição: o botão deve permanecer fixo no canto superior direito da tela (position: fixed; top: 15px; right: 15px;).
+Tooltip: ao passar o mouse ou focar via teclado, deve aparecer a frase (em inglês):
+You can create wedding and birthday cakes with Chat Neural
+Regras:
+
+O botão deve ter o texto "Recipes".
+
+Se o botão já existir, apenas adicione o id="recipes-btn" e o atributo data-tooltip com a frase acima.
+
+O tooltip deve ser estilizado em CSS, com fundo escuro, texto branco, bordas arredondadas e transição suave.
+
+O tooltip deve aparecer logo abaixo do botão.
+
+O código final deve ser apenas HTML + CSS (sem JS).
+
+Código (HTML + CSS) para Replit
+<!-- Botão "Recipes" -->
+<button
+  id="recipes-btn"
+  data-tooltip="You can create wedding and birthday cakes with Chat Neural"
+  style="position: fixed; top: 15px; right: 15px;"
+>
+  Recipes
+</button>
+
+<style>
+  /* ⚠️ NÃO altere largura/altura/padding do botão já existente */
+
+  /* Garante que o botão apareça sobre outros elementos */
+  #recipes-btn {
+    z-index: 9999;
+    cursor: pointer;
+  }
+
+  /* Tooltip (texto escondido inicialmente) */
+  #recipes-btn[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    max-width: 260px;
+    background: #333;
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    white-space: normal;        /* permite quebra de linha */
+    opacity: 0;
+    pointer-events: none;       /* não bloqueia o hover */
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* Pequena seta do tooltip */
+  #recipes-btn[data-tooltip]::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 12px;
+    border: 6px solid transparent;
+    border-bottom-color: #333;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  /* Mostra tooltip ao hover/focus */
+  #recipes-btn[data-tooltip]:hover::after,
+  #recipes-btn[data-tooltip]:focus::after,
+  #recipes-btn[data-tooltip]:hover::before,
+  #recipes-btn[data-tooltip]:focus::before {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Acessibilidade: foco via teclado */
+  #recipes-btn { outline: none; }
+  #recipes-btn:focus-visible {
+    outline: 2px solid #7aa7ff;
+    outline-offset: 2px;
+  }
+</style>
+
+
+📌 Resultado esperado:
+
+Botão Recipes fixo no canto superior direito.
+
+Mantém o mesmo tamanho que você já usa.
+
+Tooltip em inglês aparece suavemente no hover/foco:
+“You can create wedding and birthday cakes with Chat Neural”.

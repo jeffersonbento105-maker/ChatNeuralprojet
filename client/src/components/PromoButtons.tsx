@@ -52,9 +52,11 @@ const PromoButtons: React.FC = () => {
 
       {/* Recipes Button */}
       <button 
+        id="recipes-btn"
         onClick={() => window.open('/recipe-viewer', '_blank')}
         className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2"
         data-testid="button-recipes"
+        data-tooltip="You can create wedding and birthday cakes with Chat Neural"
         style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
       >
         <span className="text-sm font-medium">Recipes</span>

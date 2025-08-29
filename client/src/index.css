@@ -206,3 +206,60 @@ body {
   outline: 2px solid #7aa7ff; 
   outline-offset: 2px; 
 }
+
+/* CSS Tooltip para o botão Recipes */
+#recipes-btn {
+  z-index: 9999;
+  cursor: pointer;
+  position: relative;
+}
+
+#recipes-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  max-width: 260px;
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#recipes-btn[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 12px;
+  border: 6px solid transparent;
+  border-bottom-color: #333;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+#recipes-btn[data-tooltip]:hover::after,
+#recipes-btn[data-tooltip]:focus::after,
+#recipes-btn[data-tooltip]:hover::before,
+#recipes-btn[data-tooltip]:focus::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#recipes-btn { 
+  outline: none; 
+}
+
+#recipes-btn:focus-visible {
+  outline: 2px solid #7aa7ff;
+  outline-offset: 2px;
+}
