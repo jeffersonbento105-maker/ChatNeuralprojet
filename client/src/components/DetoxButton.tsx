@@ -45,7 +45,7 @@ const DetoxButton: React.FC = () => {
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
-        {/* Detox Icon SVG */}
+        {/* Copo com Canudo SVG */}
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 64 64"
@@ -55,9 +55,16 @@ const DetoxButton: React.FC = () => {
             fill: 'white'
           }}
         >
-          <path d="M20 2h24v6H20zM24 10h16l-2 44H26z" />
-          <path d="M32 14c-8 0-14 6-14 14h28c0-8-6-14-14-14z" />
-          <circle cx="32" cy="28" r="4" />
+          {/* Copo */}
+          <path d="M18 16h28l-4 40H22z" stroke="white" strokeWidth="2" fill="none"/>
+          {/* Base do copo */}
+          <ellipse cx="32" cy="56" rx="11" ry="3" fill="white"/>
+          {/* Topo do copo */}
+          <ellipse cx="32" cy="16" rx="14" ry="3" fill="white"/>
+          {/* Canudo */}
+          <rect x="42" y="8" width="2" height="20" fill="white"/>
+          {/* Curva do canudo */}
+          <path d="M42 8 Q46 6 48 10" stroke="white" strokeWidth="2" fill="none"/>
         </svg>
       </button>
       
