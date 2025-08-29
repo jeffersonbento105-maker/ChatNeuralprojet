@@ -5,6 +5,7 @@ import AIControls from "@/components/AIControls";
 import AssistantToggle from "@/components/AssistantToggle";
 import LanguageSelector from "@/components/LanguageSelector";
 import DetoxButton from "@/components/DetoxButton";
+import WorkoutButton from "@/components/WorkoutButton";
 
 export default function Chat() {
   const chat = useChat();
@@ -343,6 +344,9 @@ export default function Chat() {
       
       {/* Detox Button */}
       <DetoxButton />
+      
+      {/* Workout Button */}
+      <WorkoutButton />
       
       {/* Language Selector */}
       <LanguageSelector onLanguageChange={setSelectedLanguage} />
