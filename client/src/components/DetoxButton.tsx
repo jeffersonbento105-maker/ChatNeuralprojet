@@ -45,7 +45,7 @@ const DetoxButton: React.FC = () => {
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
-        {/* Copo com Canudo SVG */}
+        {/* Copo de Milkshake com Canudo SVG */}
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 64 64"
@@ -55,16 +55,22 @@ const DetoxButton: React.FC = () => {
             fill: 'white'
           }}
         >
-          {/* Copo */}
-          <path d="M18 16h28l-4 40H22z" stroke="white" strokeWidth="2" fill="none"/>
-          {/* Base do copo */}
-          <ellipse cx="32" cy="56" rx="11" ry="3" fill="white"/>
-          {/* Topo do copo */}
-          <ellipse cx="32" cy="16" rx="14" ry="3" fill="white"/>
-          {/* Canudo */}
-          <rect x="42" y="8" width="2" height="20" fill="white"/>
-          {/* Curva do canudo */}
-          <path d="M42 8 Q46 6 48 10" stroke="white" strokeWidth="2" fill="none"/>
+          {/* Copo de milkshake - formato mais largo em cima */}
+          <path d="M20 22 L22 54 L42 54 L44 22 Z" fill="white"/>
+          {/* Borda do copo */}
+          <path d="M20 22 L22 54 L42 54 L44 22 Z" stroke="white" strokeWidth="1.5" fill="none"/>
+          {/* Topo do copo (borda) */}
+          <rect x="18" y="20" width="28" height="4" rx="2" fill="white"/>
+          {/* Líquido do milkshake */}
+          <path d="M21 24 L23 50 L41 50 L43 24 Z" fill="rgba(255,255,255,0.7)"/>
+          {/* Canudo listrado */}
+          <rect x="38" y="8" width="3" height="18" fill="white"/>
+          <rect x="38" y="8" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
+          <rect x="38" y="12" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
+          <rect x="38" y="16" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
+          <rect x="38" y="20" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
+          {/* Curva do canudo no topo */}
+          <path d="M39.5 8 Q43 6 45 10" stroke="white" strokeWidth="2" fill="none"/>
         </svg>
       </button>
       
