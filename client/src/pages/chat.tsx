@@ -5,6 +5,7 @@ import AIControls from "@/components/AIControls";
 import AssistantToggle from "@/components/AssistantToggle";
 import LanguageSelector from "@/components/LanguageSelector";
 import DetoxButton from "@/components/DetoxButton";
+import WorkoutButton from "@/components/WorkoutButton";
 
 export default function Chat() {
   const chat = useChat();
@@ -341,8 +342,11 @@ export default function Chat() {
       {/* Fixed Promo Buttons */}
       <PromoButtons />
       
-      {/* Detox Button */}
-      <DetoxButton />
+      {/* Top Buttons Container */}
+      <div style={{ position: 'fixed', top: '15px', right: '15px', display: 'flex', gap: '10px', zIndex: 9999 }}>
+        <DetoxButton />
+        <WorkoutButton />
+      </div>
       
       {/* Language Selector */}
       <LanguageSelector onLanguageChange={setSelectedLanguage} />

@@ -1,0 +1,131 @@
+Tarefa: criar um botão chamado “Workout” com um ícone de treino (halter/dumbbell), que fique ao lado do botão Detox no canto superior direito.
+Posição: alinhar os dois botões próximos (usando flex ou gap) para que fiquem lado a lado no topo direito.
+Tamanho: manter o botão pequeno e discreto (mesmo padrão do botão Detox, não alterar width, height, padding ou font-size).
+Tooltip: ao passar o mouse ou focar via teclado, deve aparecer a frase em português:
+Peça pro chat exercícios para treinar em casa ou academia.
+Regras:
+
+O botão deve ter o texto “Workout” e o ícone de halter em SVG.
+
+Se já existir um container para os botões (ex: Detox), adicione este botão dentro do mesmo container.
+
+Se não existir, crie um div fixo no canto superior direito com display: flex; gap: 10px;.
+
+O código deve ser apenas HTML + CSS (sem JavaScript).
+
+Código (HTML + CSS)
+<!-- Container fixo para os botões no canto superior direito -->
+<div class="top-buttons">
+  <!-- Botão Detox (já existente) -->
+  <button
+    id="detox-btn"
+    data-tooltip="Ask Chat for a detox recipe for your diet."
+  >
+    <!-- Copo Detox -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
+         width="18" height="18" fill="currentColor"
+         style="vertical-align: middle; margin-right: 6px;">
+      <path d="M20 2h24v6H20zM24 10h16l-2 44H26z" />
+      <path d="M32 14c-8 0-14 6-14 14h28c0-8-6-14-14-14z" />
+      <circle cx="32" cy="28" r="4" />
+    </svg>
+    Detox
+  </button>
+
+  <!-- Botão Workout (novo) -->
+  <button
+    id="workout-btn"
+    data-tooltip="Peça pro chat exercícios para treinar em casa ou academia."
+  >
+    <!-- Ícone de halter -->
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         viewBox="0 0 24 24" fill="currentColor"
+         width="18" height="18"
+         style="vertical-align: middle; margin-right: 6px;">
+      <path d="M4 10h2v4H4v-4zm14 0h2v4h-2v-4zM7 7h2v10H7V7zm8 0h2v10h-2V7zm-4 2h2v6h-2V9z"/>
+    </svg>
+    Workout
+  </button>
+</div>
+
+<style>
+  /* Container fixo canto superior direito */
+  .top-buttons {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 9999;
+  }
+
+  /* Estilo padrão dos botões */
+  .top-buttons button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transition: background 0.25s, transform 0.25s;
+  }
+
+  .top-buttons button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+  }
+
+  /* Tooltip */
+  .top-buttons button[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    max-width: 260px;
+    background: #333;
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    white-space: normal;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .top-buttons button[data-tooltip]::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 12px;
+    border: 6px solid transparent;
+    border-bottom-color: #333;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  /* Hover/focus ativa tooltip */
+  .top-buttons button[data-tooltip]:hover::after,
+  .top-buttons button[data-tooltip]:focus::after,
+  .top-buttons button[data-tooltip]:hover::before,
+  .top-buttons button[data-tooltip]:focus::before {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+
+📌 Resultado esperado:
+
+Dois botões lado a lado no canto superior direito: Detox e Workout.
+
+O Workout tem ícone de halter + texto.

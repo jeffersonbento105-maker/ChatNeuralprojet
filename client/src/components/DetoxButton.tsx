@@ -10,31 +10,37 @@ const DetoxButton: React.FC = () => {
 
   return (
     <div 
-      className="detox-btn-container"
-      onMouseEnter={() => setIsVisible(true)}
-      onMouseLeave={() => setIsVisible(false)}
+      className="top-buttons"
       style={{
         position: 'fixed',
         top: '15px',
         right: '15px',
+        display: 'flex',
+        gap: '10px',
         zIndex: 9999
       }}
     >
+      <div
+        className="detox-btn-container"
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+        style={{ position: 'relative' }}
+      >
       <button 
         className="detox-btn"
         onClick={handleClick}
         style={{
           background: '#4caf50',
+          color: 'white',
           border: 'none',
-          borderRadius: '50%',
-          width: '38px',
-          height: '38px',
+          borderRadius: '6px',
+          padding: '6px 12px',
+          fontSize: '14px',
           cursor: 'pointer',
-          boxShadow: '0px 3px 6px rgba(0,0,0,0.15)',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'transform 0.2s, background 0.2s'
+          boxShadow: '0 3px 6px rgba(0,0,0,0.2)',
+          transition: 'background 0.25s, transform 0.25s'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = '#45a049';
@@ -48,56 +54,55 @@ const DetoxButton: React.FC = () => {
         {/* Copo de Milkshake com Canudo SVG */}
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 64 64"
-          style={{
-            width: '20px',
-            height: '20px',
-            fill: 'white'
-          }}
+          viewBox="0 0 64 64" 
+          fill="currentColor"
+          width="18" 
+          height="18"
+          style={{ verticalAlign: 'middle', marginRight: '6px' }}
         >
-          {/* Copo de milkshake - formato mais largo em cima */}
-          <path d="M20 22 L22 54 L42 54 L44 22 Z" fill="white"/>
-          {/* Borda do copo */}
-          <path d="M20 22 L22 54 L42 54 L44 22 Z" stroke="white" strokeWidth="1.5" fill="none"/>
-          {/* Topo do copo (borda) */}
-          <rect x="18" y="20" width="28" height="4" rx="2" fill="white"/>
-          {/* Líquido do milkshake */}
-          <path d="M21 24 L23 50 L41 50 L43 24 Z" fill="rgba(255,255,255,0.7)"/>
-          {/* Canudo listrado */}
-          <rect x="38" y="8" width="3" height="18" fill="white"/>
-          <rect x="38" y="8" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
-          <rect x="38" y="12" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
-          <rect x="38" y="16" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
-          <rect x="38" y="20" width="3" height="2" fill="rgba(255,255,255,0.5)"/>
-          {/* Curva do canudo no topo */}
-          <path d="M39.5 8 Q43 6 45 10" stroke="white" strokeWidth="2" fill="none"/>
+          <path d="M20 2h24v6H20zM24 10h16l-2 44H26z" />
+          <path d="M32 14c-8 0-14 6-14 14h28c0-8-6-14-14-14z" />
+          <circle cx="32" cy="28" r="4" />
         </svg>
+        Detox
       </button>
       
-      {/* Tooltip */}
-      {isVisible && (
-        <div 
-          className="tooltip"
-          style={{
-            visibility: 'visible',
-            width: '230px',
-            backgroundColor: '#333',
-            color: '#fff',
-            textAlign: 'center',
-            borderRadius: '6px',
-            padding: '6px',
-            position: 'absolute',
-            zIndex: 1,
-            top: '45px',
-            right: '0',
-            opacity: 1,
-            transition: 'opacity 0.3s',
-            fontSize: '13px'
-          }}
-        >
-          Ask Chat for a detox recipe for your diet.
-        </div>
-      )}
+        {/* Tooltip */}
+        {isVisible && (
+          <div 
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 8px)',
+              right: '0',
+              maxWidth: '260px',
+              background: '#333',
+              color: '#fff',
+              borderRadius: '6px',
+              padding: '6px 10px',
+              fontSize: '13px',
+              lineHeight: '1.4',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+              whiteSpace: 'normal',
+              opacity: 1,
+              pointerEvents: 'none',
+              transform: 'translateY(0)',
+              transition: 'opacity 0.25s ease, transform 0.25s ease',
+              zIndex: 10000
+            }}
+          >
+            Ask Chat for a detox recipe for your diet.
+            <div 
+              style={{
+                position: 'absolute',
+                top: '-6px',
+                right: '12px',
+                border: '6px solid transparent',
+                borderBottomColor: '#333'
+              }}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
