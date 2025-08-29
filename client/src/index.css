@@ -154,6 +154,7 @@ body {
 /* CSS Tooltip para o botão Send Email */
 #send-email-btn[data-tooltip] {
   z-index: 9999;
+  position: relative;
 }
 
 #send-email-btn[data-tooltip]::after {
