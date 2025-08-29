@@ -150,3 +150,58 @@ body {
   gap: 12px !important;
   pointer-events: auto !important;
 }
+
+/* CSS Tooltip para o botão Send Email */
+#send-email-btn[data-tooltip] {
+  z-index: 9999;
+}
+
+#send-email-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  max-width: 280px;
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.35;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#send-email-btn[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 12px;
+  border: 6px solid transparent;
+  border-bottom-color: #333;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+#send-email-btn[data-tooltip]:hover::after,
+#send-email-btn[data-tooltip]:focus::after,
+#send-email-btn[data-tooltip]:hover::before,
+#send-email-btn[data-tooltip]:focus::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#send-email-btn[data-tooltip] { 
+  outline: none; 
+}
+
+#send-email-btn[data-tooltip]:focus-visible { 
+  outline: 2px solid #7aa7ff; 
+  outline-offset: 2px; 
+}

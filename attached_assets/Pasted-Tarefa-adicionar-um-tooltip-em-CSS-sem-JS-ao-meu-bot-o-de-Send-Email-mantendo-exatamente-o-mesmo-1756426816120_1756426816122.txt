@@ -1,0 +1,103 @@
+Tarefa: adicionar um tooltip em CSS (sem JS) ao meu botão de Send Email, mantendo exatamente o mesmo tamanho e a mesma posição (canto superior direito).
+Regras importantes:
+
+Não altere width, height, padding, margin ou font-size do botão já existente.
+
+Mantenha o botão no canto superior direito (top/right). Se ele já estiver posicionado, não mude os valores; se não estiver, aplique position: fixed; top: 15px; right: 15px;.
+
+Adicione apenas um atributo data-tooltip com o texto:
+With Chat Neural, you can create formal, friendly, and neutral emails within the chat
+
+O tooltip deve aparecer no hover do botão, logo abaixo dele, com leve transição de opacidade.
+
+O código deve ser HTML + CSS puro (sem JS).
+
+Use o id send-email-btn no botão. Se meu botão já existir, apenas adicione o id e o atributo data-tooltip, sem mudar o restante.
+
+Se o botão ainda não existir, crie-o com um ícone de email em SVG, mas não defina largura/altura (para não mudar o tamanho).
+
+Código (HTML + CSS)
+
+Cole o CSS dentro de <style> e garanta que o botão tenha id="send-email-btn" e o data-tooltip com a frase.
+
+<!-- Se você JÁ TEM o botão, apenas adicione:
+id="send-email-btn"
+data-tooltip="With Chat Neural, you can create formal, friendly, and neutral emails within the chat"
+(e não altere mais nada do botão). -->
+
+<!-- Exemplo de botão (use apenas se você ainda não tem um): -->
+<button
+  id="send-email-btn"
+  aria-label="Send Email"
+  data-tooltip="With Chat Neural, you can create formal, friendly, and neutral emails within the chat"
+  style="position: fixed; top: 15px; right: 15px;"  <!-- Remova esta linha se seu botão já estiver posicionado -->
+>
+  <!-- Ícone de email (SVG). Não define size aqui para não alterar o tamanho atual do botão -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       aria-hidden="true" focusable="false" style="display:block;">
+    <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.3-.5l7.2 5.4L18.7 6H4.3Zm15.2 2.1-6.9 5.2a1.5 1.5 0 0 1-1.8 0L3.9 8.1V17.5c0 .55.45 1 1 1h14.2c.55 0 1-.45 1-1V8.1Z"/>
+  </svg>
+</button>
+
+<style>
+  /* ⚠️ NÃO altere largura/altura do botão existente.
+     O CSS abaixo só cuida do tooltip e da posição (se necessário). */
+
+  /* Se o botão ainda não estiver no topo direito, use essa classe opcional:
+     .fixed-top-right { position: fixed; top: 15px; right: 15px; } */
+
+  /* Área base do tooltip (usa pseudo-elemento ::after) */
+  #send-email-btn[data-tooltip] {
+    /* NÃO definir width/height/padding/margin aqui */
+    position: fixed; top: 15px; right: 15px; /* Remova esta linha se já estiver posicionado no seu projeto */
+    z-index: 9999; /* garante que o tooltip apareça por cima */
+  }
+
+  /* Tooltip */
+  #send-email-btn[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    max-width: 280px;
+    background: #333;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 1.35;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    white-space: normal;          /* permite quebrar linha */
+    opacity: 0;
+    pointer-events: none;         /* não rouba o hover do botão */
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Pontinha do tooltip (seta) */
+  #send-email-btn[data-tooltip]::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 12px;
+    border: 6px solid transparent;
+    border-bottom-color: #333;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  /* Mostrar no hover/focus */
+  #send-email-btn[data-tooltip]:hover::after,
+  #send-email-btn[data-tooltip]:focus::after,
+  #send-email-btn[data-tooltip]:hover::before,
+  #send-email-btn[data-tooltip]:focus::before {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Acessibilidade: mostrar tooltip ao focar via teclado */
+  #send-email-btn[data-tooltip] { outline: none; }
+  #send-email-btn[data-tooltip]:focus-visible { outline: 2px solid #7aa7ff; outline-offset: 2px; }
+</style>

@@ -40,9 +40,11 @@ const PromoButtons: React.FC = () => {
       {/* Email Button */}
       <Tooltip content={tooltips.email}>
         <button 
+          id="send-email-btn"
           onClick={() => window.open('/email', '_blank')}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 text-sm rounded-full shadow-lg transition-all duration-200 hover:scale-105 flex items-center gap-2 mb-3"
           data-testid="button-email"
+          data-tooltip="With Chat Neural, you can create formal, friendly, and neutral emails within the chat"
           style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
         >
           <span className="text-sm font-medium">Send Email</span>
