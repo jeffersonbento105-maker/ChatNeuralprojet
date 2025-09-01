@@ -4,7 +4,7 @@ const WorkoutButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClick = () => {
-    console.log('Workout button clicked');
+    console.log('Investment button clicked');
   };
 
   return (
@@ -22,6 +22,7 @@ const WorkoutButton: React.FC = () => {
       <button 
         className="workout-btn"
         onClick={handleClick}
+        aria-label="Investment"
         style={{
           background: '#4caf50',
           border: 'none',
@@ -44,18 +45,14 @@ const WorkoutButton: React.FC = () => {
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
-        {/* Dumbbell Icon SVG */}
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24" 
-          fill="white"
-          style={{
-            width: '20px',
-            height: '20px'
-          }}
-        >
-          <path d="M4 10h2v4H4v-4zm14 0h2v4h-2v-4zM7 7h2v10H7V7zm8 0h2v10h-2V7zm-4 2h2v6h-2V9z"/>
-        </svg>
+        {/* Dollar Sign */}
+        <span style={{
+          fontSize: '20px',
+          fontWeight: 'bold',
+          color: 'white'
+        }}>
+          $
+        </span>
       </button>
       
       {/* Tooltip */}
@@ -79,7 +76,7 @@ const WorkoutButton: React.FC = () => {
             fontSize: '13px'
           }}
         >
-          Ask the chat for exercises to train at home or at the gym.
+          Want to know the future of your money? Simulate on ChatNeural a 5% projection of your invested capital in Bitcoin over 10 years. Satisfy your curiosity!
         </div>
       )}
     </div>

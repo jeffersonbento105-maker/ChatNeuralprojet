@@ -63,7 +63,7 @@ Dedicated email composition tool with:
 - **Send Email Button**: Blue button with CSS-only tooltip "With Chat Neural, you can create formal, friendly, and neutral emails within the chat"
 - **Recipes Button**: Purple button with CSS-only tooltip "You can create wedding and birthday cakes with Chat Neural"
 - **Detox Button**: Green circular button (38x38px) in top-right corner (right: 15px) with milkshake icon and tooltip "Ask Chat for a detox recipe for your diet"
-- **Workout Button**: Green circular button (38x38px) positioned separately (right: 80px) with dumbbell icon and tooltip "Ask the chat for exercises to train at home or at the gym"
+- **Investment Button**: Green circular button (38x38px) positioned separately (right: 80px) with dollar sign ($) icon and tooltip "Want to know the future of your money? Simulate on ChatNeural a 5% projection of your invested capital in Bitcoin over 10 years. Satisfy your curiosity!"
 - **CSS Tooltip Implementation**: Pure CSS tooltips using ::after and ::before pseudo-elements with smooth transitions and accessibility support
 - **Multi-language selector**: Small dropdown below main buttons with flag indicators
 

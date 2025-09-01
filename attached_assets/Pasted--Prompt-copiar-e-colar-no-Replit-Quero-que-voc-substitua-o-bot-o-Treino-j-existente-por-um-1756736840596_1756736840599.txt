@@ -1,0 +1,61 @@
+
+Prompt (copiar e colar no Replit)
+
+Quero que você substitua o botão “Treino” já existente por um botão de investimento com ícone de cifrão ($), mantendo toda a aparência e o posicionamento exatamente iguais. Não crie um novo botão. Apenas altere o existente.
+
+Regras obrigatórias
+
+1. Não alterar o design: manter formato redondo, cor verde, tamanhos, classes CSS, sombras, bordas, responsividade e a posição fixa à direita da tela.
+
+
+2. Não mudar a estrutura do HTML/CSS/JS além do necessário para a troca do conteúdo do botão.
+
+
+3. Texto/ícone do botão: substituir o conteúdo “Treino” por “$” (símbolo de cifrão — o mesmo do Shift+4).
+
+
+4. Acessibilidade: definir aria-label="Investment" no botão (ou equivalente) para leitores de tela.
+
+
+5. Tooltip (em inglês): ao passar o mouse, exibir exatamente esta mensagem, com ChatNeural junto (sem espaço):
+
+Want to know the future of your money? Simulate on ChatNeural a 5% projection of your invested capital in Bitcoin over 10 years. Satisfy your curiosity!
+
+
+6. Posicionamento do tooltip: continuar fixo à esquerda da tela, sem sobrepor o botão e sem se mover com a rolagem, seguindo a mesma lógica já usada pelos outros tooltips.
+
+
+7. Comportamento: o botão não executa ação de clique; apenas exibe/oculta o tooltip ao hover, como já acontece hoje.
+
+
+8. Padronização: manter o mesmo padrão/estilo dos outros botões de propaganda (“Recipes”, “Send Email”).
+
+
+
+Como aplicar (faça automaticamente)
+
+Localize no projeto o elemento do botão cujo texto atual seja “Treino” (ou cujo id/classe/selector represente o botão de treino).
+
+Troque apenas o conteúdo visível do botão para “$” sem remover as classes existentes.
+
+Se o tooltip usa title, data-tooltip ou um container dedicado, atualize o texto para a mensagem acima.
+
+Garanta que o tooltip continue alinhado à esquerda e fixo, usando as mesmas classes/estilos que os demais tooltips já utilizam.
+
+Adicione/atualize aria-label="Investment" no botão.
+
+
+Critérios de aceite (checklist)
+
+[ ] Botão segue redondo e verde, mesmo tamanho e posição fixa à direita.
+
+[ ] Conteúdo do botão é apenas “$”.
+
+[ ] Tooltip aparece no hover, fixo à esquerda, com o texto exato informado e “ChatNeural” sem espaço.
+
+[ ] Nenhuma ação de clique foi adicionada.
+
+[ ] aria-label="Investment" presente.
+
+[ ] Nenhuma classe/estilo/posição dos outros botões foi alterada.
+
